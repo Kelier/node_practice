@@ -1,0 +1,71 @@
+### 起步
+webpack 是构建我们应用程序中 JavaScript 模块的工具。从使用 webpack cli 或 api ，并按照安装说明开始。 webpack 简化快速构建应用程序依赖图表的流程，以正确的顺序打包他们。webpack 能够配置自定义优化代码，在生产环境构建时拆分 vendor/css/js 代码，运行开发服务实现页面无刷新、代码热重载，以及其他非常酷炫的特性。
+
+#### webpack的搭建用例
+
+1.创建一个工程目录
+
+```
+mkdir webpack-demo && cd webpack-demo
+npm init -y
+npm install --save-dev webpack
+```
+
+2.创建子目录app,新建index.js文件</br>
+app/index.js
+```
+function component () {
+  var element = document.createElement('div');
+
+  /* 需要引入 lodash，下一行才能正常工作 */
+  element.innerHTML = _.join(['Hello','webpack'], ' ');
+
+  return element;
+}
+
+document.body.appendChild(component());
+```
+
+3.运行上面的js,需要依赖于一个html文件</br>
+dist/index.html
+```
+<html>
+  <head>
+    <title>webpack 2 demo</title>
+    <script src="https://unpkg.com/lodash@4.16.6"></script>
+  </head>
+  <body>
+    <script src="app/index.js"></script>
+  </body>
+</html>
+```
+
+4.此时我们安装依赖lodash，并于index.js中引入</br>
+app/index.js
+```
+//首行引入
+import _ from 'lodash'
+```
+
+5.去除无用的依赖，让webpack生成优化过的bundle</br>
+dist/index.html
+```
+去除：<script src="https://unpkg.com/lodash@4.16.6"></script>
+去除：<script src="app/index.js"></script>
+引入：<script src="dist/bundle.js"></script>
+
+```
+
+最后运行webpack
+```
+webpack app/index.js dist/bundle.js
+```
+
+打开你的index.html你就会看到包含以下文本的页面：'Hello webpack'.
+
+<hr>
+
+另外你可以通过配置webpack.config.js或者npm run build 目录下增添的依赖项来构建生产环境，博主这里就不赘述了
+
+End.</br>
+import from [webpack中文网]

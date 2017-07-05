@@ -1,0 +1,14 @@
+{
+  "name": "firstLaunch",
+  "version": "0.0.1",
+  "description": "The first upload.",
+  "keywords": [],
+  "author": "Kelier <635073826@qq.com>",
+  "repository": { "type": "git", "url": "git://github.com/Kelier/firstLaunch.git" },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "main": "index"
+}

@@ -1,0 +1,1187 @@
+一学期的全英教学虽然让我们更接近网络的基础结构，但也为我们的考试复习带来了很大难题，何况**宋先生**还不给我们提纲。没有什么好的学习方法，只能系统的写下这篇博客，本文内容纯属个人理解，有错误的地方还请与我联系。
+
+![](http://img0.pconline.com.cn/pconline/1610/11/8447240_5_thumb.jpg)
+
+本文极其冗长乏味，请在家长陪同下观看！
+
+如有雷同，纯属巧合
+
+____
+
+笔者认真地翻阅过一遍计算机网络后，发现此门学科其实没有你想象的那么难，只是其内容的琐碎繁杂使得你拒之门外了而已。在我看来，计算机网络有着清晰的层次结构，我们完全可以按照这个模型逐层剥离，自顶向下地来分析学习，没错，就是下面这本书了（不管第几版吧），介绍的很完全，挺好的一本书。
+
+![](http://img3x0.ddimg.cn/9/36/24015330-1_u_2.jpg)
+
+我们先来列一个学习目录
+```
+CH.1 计算机网络概述[Introduction]
+    a. 什么是因特网？[What is the internet?]
+    b. 网络边缘[The network edge]
+    c. 网络核心[The network core]
+      c.1 电路交换[Circuit Switching]
+      c.2 分组交换[Packet Switching]
+    d.分组交换中的时延，丢包，吞吐量[Delay,Loss,Throughput]
+    e.协议层及它们的服务模型[Protocol Layers & Service Models]
+
+CH.2 应用层[Application Layer]
+    a. 设计原则[Principles]
+    b. Web and HTTP
+    c. 文件传输[FTP]
+    d. 电子邮箱[Electronic Mail]
+      d.1 简单邮件传输协议[SMTP]
+      d.2 邮局协议[POP3]
+      d.3 邮件访问协议[IMAP]
+    e. 域名系统[DNS]
+
+CH.3 传输层[Transport Layer]
+    a. 介绍[Introduction]
+    b. 多路复用与多路分解[Multiplexing and Demultiplexing]
+    c. 用户数据报协议[UDP]
+    d. 可靠数据协议[reliable data transfer]
+    e. 传输控制协议[TCP]
+    f. 阻塞控制[Congestion control]
+
+CH.4 网络层[Network Layer]
+    a. 路由和转发[Routing and Forwarding]
+    b. 虚电路与数据报[Virtual-Circuit and Datagram Networks]
+    c. 路由器[Router]
+    d. 网络互联协议[IP]
+    e. 路由算法及协议[Routing algorithms abd protocols]
+      e.1 链路及矢量算法[Link-State versus Distance Distance-Vector]
+      e.2 RIP & OSPF & BGP
+    f. 广播与多播路由[Broadcast and Multicast routing]
+
+CH.5 链路层及局域网[Link Layer and LAN]
+    a. 介绍[Introduction]
+    b. 错误检测与校正[Error Detection/Correction]
+    c. 多路访问协议[Multiple Access Protocols]
+      c.1 信道划分协议[Channel Partitioning Protocols]
+      c.2 随机接入协议[Random Access Protocols]
+      c.3 轮流协议[Taking-Turns Protocols]
+    d. 链路层处理[Link-Layer Addressing]
+      d.1 MAC 地址
+      d.2 地址解析协议[Address Resolution Protocols]
+    e. 以太网[Ethernet]
+    f. 链路层交换机[非重点]
+
+CH.6 无线与移动网[Wireless and Mobile Networks]
+    a. WiFi:802.11 Wireless LANs
+    b. 蜂窝[Celluar internet Access]
+
+CH.7 总结[Summary]
+```
+
+这是一段长长的目录，不要被它吓到，我们从thin（心）开始
+
+#### 一、计算机网络概述
+
+我在知乎看到了一段非常不错的总结，就直接丢过来用了,感谢回答者花潇！
+
+<hr>
+我们的因特网，肯定是基于物理电路的，
+因此，我们需要一个将数据转化为物理信号的层，
+于是，物理层诞生啦
+
+<hr>
+有了处理物理信号的物理层，可我们还得知道，信号发给谁啊，
+你肯定知道，每个主机都有一个全球唯一的MAC地址吧，所以我们可以通过MAC地址来寻址啊，
+恭喜你，链路层诞生了
+
+<hr>
+别急，你知道MAC地址是扁平化的吧，
+也就是说，MAC地址的空间分布，是无规律的！！！
+如果你有十万台主机，要通过MAC地址来寻址，
+简直无F**K可说。
+不管怎样说，这么大的数据量，我们需要有个解决办法
+所以我们引入IP地址，网络层应运而生
+
+<hr>
+然而，一台主机不能只和一台服务器通信啊，
+毕竟下小电影，也要同时货比三家啊。
+那如何实现并行通信呢？
+嘿嘿，我们有端口号啊，基于不同的需求，产生了UDP&TCP，运输层也诞生啦
+
+<hr>
+别急，你知道的吧，不同应用、不同的传输需求，
+比如请求网页、发邮件什么的，
+为了方便开发者，我们对这些常用需求进行了封装
+这样就有了应用层的诞生
+
+这算是自底而上的讲述了计网，虽与我们本书正好相反，但思想是一样的，由此我们可以更好地理解每层layer的含义
+
+以上，你应该了解了计算机网络是门怎样的学科，如果你对这些已经了然于心，则完全可以跳过。
+
+##### What is the internet?
+这是个宽泛的定义，原书把它描述为两种：<br>
+根据硬件(`basic hardware`)和软件组件(`software components`)构成的描述 根据基础设施(`infrastructure`)向分布式应用程序(d`istributed applications`)提供的服务描述
+
+对于协议的定义：一个协议定义了在两个或多个通信实体之间交换的报文格式和次序，以及在报文或其他事件方面所采取的动作、传输和/或接收。(不知道考不考)
+
+参考：protocols define format, order of msgs sent and received among network entities, and actions taken on msg transmission, receipt
+
+
+![](http://www.2cto.com/uploadfile/2015/0602/20150602032204109.png)
+
+上图就是协议的图形描述，时间有限，忽略水印
+
+____
+
+对于网络我们最好从**Edge**和**Core**入手
+
+![](../images/2017/06/CoreEdge.jpg)
+<center><font color="gray">Network关系图</font></center>
+
+>Network Edge
+
+hosts:clients and servers(非重点，不介绍了)
+
+我们具体来看看网络核心部分
+
+>Network Core
+
+###### Packet Switching
+分组交换技术（packet switching）也称包交换，是将用户传送的数据划分成一定的长度，每个部分叫做一个分组，通过传输分组的方式传输信息的一种技术。
+
+###### Circuit Switching
+电路交换方式（circuit switching）是指在同一电信网用户群中任意两个或多个用户终端之间建立电路暂时连接的交换方式。
+
+###### Message Switching(书中暂未提到，了解即可)
+>Versus traits
+
+> 分组交换基于存储转发(store-forward)的方式，利用率高，交互性高，只是在时延上要高于电路交换
+
+>电路交换中常用的两种多路复用技术是FDM（频分）和TDM（时分）
+
+##### Delay,Loss and Throughput
+>Delay
+
+让我们记住一个公式，它很好地展示了四种时延的关系
+
+**d<sub>nodal</sub>=d<sub>processing</sub>+d<sub>queuing</sub>+d<sub>transmission</sub>+d<sub>propagation</sub>**
+
+![](http://i.imgur.com/d5TaByz.png)
+
+##### Protocol Layering
+我们要介绍的是`service model`，我们一般将网络层次划分为：
+
+![](https://raw.githubusercontent.com/gaoxiangnumber1/NotesPhotos/master/NET/CNATDA/1-23.png)
+
+- application: supporting network applications<br>
+FTP, SMTP, HTTP
+- transport: process-process data transfer<br>
+TCP, UDP
+- network: routing of datagrams from source to destination<br>
+IP, routing protocols
+- link: data transfer between neighboring  network elements<br>
+Ethernet, 802.111 (WiFi), PPP
+- physical: bits “on the wire”
+
+它们相应的数据传输单元相应是`message`->`segment`->`datagram`->`frame`->`bit`
+
+有了良好的层次模型，我们就可以处理许多复杂问题了
+
+##### Test
+现在的你已经对计算机网络有一些清楚的认识了，让我们做点小测（别着急看答案）
+
+Q. Identify the five components of a data communications system.  
+
+A: (数据通信系统5个组成部分：报文 发送方 接受方 传输介质 协议) <br>
+message,sender,receiver,transmission medium and protocol. 
+
+Q. What advantages does TDM versus FDM in a circuit-switched network?
+
+A.FDM需要复杂的模拟硬件将信号转换成适当的频带。<br>
+FDM requires sophisticated analog hardware to shift signal into appropriate frequency bands.
+
+Q.According to the geographical coverage of the classification, the computer network can be divided into three categories
+
+A.局域网，城域网，广域网<br>
+LAN、MAN、WAN
+____
+
+#### Application Layer
+让我们红尘作伴，活的潇潇洒洒~<br>
+策马奔腾，来到应用层
+
+应用层的两种体系结构：
+- `Client-Server`（BS算是CS的特例）
+- `Peer-to-Peer`（P2P）
+
+>CS
+
+主机A如果运行客户端程序，而主机B运行服务端程序，客户A向服务端B发送请求服务，服务器B向客户A提供服务，这种情况下，就是以CS的方式进行通信。我们所指的客户和服务器都是指通信中涉及的两个应用进程，而不是具体的主机。
+
+特点：
+
+`server:always-on host、permanent IP address`
+
+`client:can be intermitted,dynamic IP address`
+
+>P2P
+
+以对等方式进行通信，并不区分客户端和服务端，而是平等关系进行通信。在对等方式下，可以把每个相连的主机当成既是主机又是客户，可以互相下载对方的共享文件。比如迅雷下载就是典型的P2P通信方式。
+
+特点:
+
+`no always-on server、can be intermitted、self-scalability(自扩展性)`
+
+**Tips:** the network through a software interface called a `socket`
+
+socket的通信方式看上去如下图
+
+![](http://upload-images.jianshu.io/upload_images/3965058-14c1d2b1aa59ec94.png)
+
+##### Internet transport protocols services
+
+>TCP service
+- reliable transport
+- flow control
+- congestion control
+- does not provide: timing, minimum throughput guarantee, security
+- connection-oriented
+
+>UDP service
+- unreliable data transfer
+- does not provide: reliability, flow control, congestion control, timing, throughput guarantee, security, orconnection setup
+
+**Expand**: TCP和UDP都没有提供任何加密机制，由于存在种种隐私和其他安全问题，人们研制了TCP的加强版本，称为安全套接字层(`Secure Socket Layer, SSL`)。SSL不是独立于TCP和UDP的第三种协议，而只是对TCP的增强。这种增强是在应用层上实现的。
+
+一张图看下应用场景
+
+![](http://cf.ppt-online.org/files/slide/q/QxyRYa0FlMs3LrEIH1UqndGObXkmgj4CeWotph/slide-10.jpg)
+
+##### HTTP[the HyperText Transfer Protocol]
+
+http有两种连接方式：持久层(`persistent HTTP`)和非持久层(`non-persistent HTTP`),默认是持久层
+
+>非持久层
+
+这里我们定义一个概念，`RTT`：round-trip time,它被解释为客户端收发一个包所用的时间
+
+![](https://xunix.me/2017/04/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BA%94%E7%94%A8%E5%B1%82-%E6%A6%82%E5%BF%B5/6.png)
+
+由图可以看出 `response time`=`2RTT+ file transmission time`
+
+>持久层
+
+我们给出一段http请求报文
+```
+GET /somedir/page.html HTTP/1.1
+Host: www.someschool.edu
+Connection: close
+User-agent: Mozilla/4.0
+Accept-language: fr
+```
+
+HTTP请求报文第一行叫做请求行(request line)，其后继的行叫做首部行(header line)。请求行有3个字段：方法、URL、HTTP协议版本。
+
+一个响应报文
+```
+HTTP/1.1 200 OK
+Connection: close
+Date: Thu, 03 Jul 2003 12:00:15 GMT
+Server: Apache/1.3.0 (Unix)
+Last-Modified: Sun, 6 May 2007 09:23:24 GMT
+Content-Length: 6821
+Content-Type: text/html
+
+(data data data ...)
+```
+
+上面是一个HTTP响应报文的示例。响应报文分成3部分：状态行(status line)、首部行(header line)、实体主体(entity body)。状态行有3个字段：协议版本、状态码、响应状态信息。
+
+我们给出一些常见的状态码，希望你好好铭记哦
+```
+200 OK: 请求成功，信息包含在返回的响应报文中
+301 Moved Permanently: 请求对象已经被永久转移了
+400 Bad Request: 请求不能被服务器理解
+404 Not Found: 请求的文档不在服务器上
+505 HTTP Version Not Supported: 服务器不支持请求报文使用的HTTP协议版本
+```
+
+Tips: HTTP/1.1比HTTP/1.0多出的方法类型有PUT、DELETE
+
+HTTP协议是无状态的，为了能够识别用户，HTTP使用cookie这项技术。
+
+>Cookies
+ 1. 在HTTP响应报文中有一个cookie首部行
+ 2. 在HTTP请求报文中有一个cookie首部行
+ 3. 在用户端系统中保留有一个cookie文件，由用户浏览器管理
+ 4. web站点有一个后台数据库
+
+
+web缓存器(web cache)也叫代理服务器(proxy server)，它是能够代表初始web服务器来满足HTTP请求的网络实体。
+
+以上cookie、webcache了解即可，不会考太多
+
+##### FTP：the file transfer protocol
+FTP运行在TCP上，使用两个并行的TCP连接来传输文件，一个是控制连接(`control connection`)，一个是数据连接(`data connection`)。
+
+![](http://cdn.ttgtmedia.com/rms/onlineImages/FTP_active_passive_desktop.jpg)
+
+##### Electronic Mail in the internet
+
+电子邮件系统主要由3各部分组成：用户代理(user agent)、邮件服务器(mail server)和简单邮件传输协议(`Simple Mail Transfer Protocol, SMTP`)。
+
+###### SMTP
+
+在握手阶段，SMTP客户机指明发送方的邮件地址和接收方的邮件地址。握手阶段结束后，客户机开始发送邮件报文。SMTP可以利用TCP提供的可靠数据传输无差错地将邮件投递到接收方的服务器。SMTP使用的是持久连接。
+
+###### Mail Access Protocol
+
+前面介绍了邮件服务器之间利用SMTP协议传送邮件的过程。现在，我们继续来看用户代理与邮件服务器之间是如何传输的。A向B发邮件时，A的用户代理会利用SMTP协议把邮件推送到其所在的邮件服务器，邮件服务器再利用SMTP协议将邮件发送给B所在的邮件服务器。
+
+![](http://userpages.umbc.edu/~dgorin1/451/OSI7/dcomm/IMAPPOP3.jpg)
+
+目前有多个流行的邮件访问协议，包括第三版邮局协议(`Post Office Protocol-Version 3, POP3`)、因特网邮件访问协议(`Internet Mail Access Protocol, IMA`P)以及HTTP，我们需要记住这些
+
+###### DNS：因特网的目录服务
+
+主机的识别方式有两种：主机名和IP地址。主机名可以方便人们记住，而路由器则喜欢格式化的IP地址。域名系统(`Domain Name System, DNS`)的主要任务就是实现主机名到IP地址的映射转换。DNS是一个由分层的DNS服务器实现的分布式数据库（`distributed, hierarchical`），是一个允许主机查询分布式数据库的应用层协议。
+
+与HTTP、FTP、SMTP协议一样，DNS协议也是应用层协议。它运行在UDP之上，使用客户机/服务器模式在通信的端系统之间运行，在通信的端系统之间通过下面的端到端运输层协议来传送DNS报文。
+
+##### Test
+
+Q: does IP address of host on which process runs suffice for identifying the process?
+
+A: no, many processes can be running on same host
+
+Q: What transport service does an app need?（应用层需要传输层提供怎样的服务？）
+
+A: data integrity(数据完整性)、throughput(吞吐量)、timing(实时性)、security(安全性)
+
+Q: what cookies can be used for:
+
+A: authorization（授权）、shopping carts（购物车）、recommendations（推荐）、user session state (Web e-mail)
+
+Q: what does the DNS servers include?
+
+A:Root DNS servers(13种)、Top-Level domain(TLD) servers、Authoritative DNS servers
+
+<hr>
+
+相信一口气看到这里的你眼睛已经开始疲惫，口唇开始干燥，心里还有一种莫名的烦躁，遇到这种情况，就洗洗睡吧，明天再看嘛，还是一条汉子
+
+![](http://img.mp.itc.cn/upload/20170420/750996a94aa440bbb8b217c412d776a6_th.jpeg)
+
+____
+
+#### Transport Layer[!]
+
+##### About service
+传输层服务提供一种进程之间的逻辑通信，主要的三个功能有：
+1. 提高服务质量(Improve service quality)
+2. 多路复用与分解(Multiplexing and Demultiplexing)
+3. 分段与重新组装(breaks app messages into segments passes to net layer,reassembles segments into messages passes to app layer)
+
+###### Multiplexing and Demultiplexing
+我们知道，在网络上主机与主机之间的通信，实质上是主机上运行的应用进程之间的通信。例如，当你通过Http上网浏览网页时，实质上是你所访问的主机的服务器进程与你本机的浏览器进程在进行通信。试想一下，当你在上网的同时，还挂着QQ，还使用ftp下载大文件，这时就有三个网络上的进程与你的主机上的三个进程进行通信，那么系统是怎么样正确地把接收到的数据定位到指定的进程中的呢？也就是说，系统是怎么把从ftp服务器发送过来的数据交付到ftp客户端，而不把这些数据交付到你的QQ上的呢？反过来考虑，系统又是如何精确地把来自各个应用进程的数据发到网络上指定上的主机（服务器）上的对应进程的呢？这就是多路分解与多路复用的作用了。
+
+每个运输层的报文段中设置了几个字段，包括源端口号和目的端口号等。
+
+多路分解就是，在接收端，运输层检查这些字段并标识出接收套接字，然后将该报文定向到该套接字。(use header info to deliver received segments to correct socket)
+
+多路复用就是从源主机的不同套接字中收集数据块，并为每个数据块封装上首部信息从而生成报文段，然后将报文段传递到网络层中去。(handle data from multiple sockets, add transport header )
+
+>无连接的多路复用与分解
+
+在运输层，无连接的网络传输是通过UDP来实现的。UDP报文中只有源端口号和目的端口号，一个UDP套接字是由一个含有`目的IP地址`和`目的端口号`的二元组来全面标识的。在客户端，源端口号是客户进程套接字的端口号，目的端口号是服务器的端口号。而在服务器端，源端口号是服务器的创建的套接字的端口号，而目的端口号是客户端的套接字的端口号。（了解原理是十分必要的，可以帮助你分析问题）
+
+>面向连接的多路复用与分解
+
+从上面的解说中，我们可以知道，网络上主机间的进程间通信，实质上是通过套接字来实现的。在运输层中面向连接的网络传输多使用TCP，而TCP套接字和UDP套接字之间有一个细微的差别，就是，TCP套接字是由一个四元组（源IP地址、源端口号，目的IP地址，目的端口号）来标识的。这样，当一个TCP报文段从网络到达一台主机时，主机会使用全部4个值来将报文段定向，即多路分解到相应的套接字。
+
+了解了以上原理，我们可以具体的去看协议的构成了
+
+##### UDP: User Datagram Protocol
+UDP是一个简单的面向数据报的运输层协议:进程的每个输出操作都正好产生一个UDP数据报,并组装成一份待发送的IP数据报。
+
+UDP数据报封装成一份IP数据报的格式如下图
+
+![](http://img.my.csdn.net/uploads/201211/10/1352539412_7437.JPG)
+
+UDP不提供可靠性:它把应用程序传给IP层的数据发送出去,但是并不保证它们能到达目的地、按照顺序到达或是只接到一份数据报。
+
+>UDP Segment Structure
+
+![](http://netlab.ulusofona.pt/rc/book/3-transport/3_03/03-07.jpg)
+
+<center><font color="gray">segment</font></center>
+
+`Tips:` UDP checksum can detect “errors” (e.g., flipped bits) in transmitted segment（可以检测到传输报文时的错误）
+
+`Expands:` DNS/SNMP(简单网络管理协议)/多媒体服务都用UDP服务
+
+##### 可靠数据传输RDT（Reliable Data Transfer）
+这是非常繁琐的一小节，请擦亮眼睛。
+
+资料可靠度是网络传输中非常大的问题之一。在TCP抽象服务的模型中(也算是理想状态)，每个应用程序的讯息都透过网络上可靠的通道来传输，然而现实中的困难是 可靠传输协定的下层是不可靠。也就是说，现实中存在着许多状况，例如资料位元错误、封包遗失等等 造成资料的不可靠，必须建立有效的传输协定。
+
+###### 完全可靠的信道上的可靠数据传输：rdt 1.0
+现在我们考虑最简单的情况下如何构造一个可靠数据传输协议。
+
+![](https://www.doraemonext.com/wp-content/uploads/2015/04/21.jpg)
+
+```
+如果你对有限状态机不熟悉，这里是对有限状态机的一些解释：
+
+上图中的 `Waiting for call from above` 和 `Waiting for call from bellow` 分别表示发送方和接收方的状态，这里只是简单的一个，后面会有更多更复杂的状态图。
+
+上图中的箭头指示了协议从一个状态变迁到另一个状态（可以从自己变迁到自己），引起变迁的事件显示在表示变迁的横线上方，事件发生时所采取的动作显示在横线下方。如果一个事件没有动作，或没有就事件发生而采取一个动作，将在横线上方或下方使用符号 ∧。
+
+有限状态机的初始状态用虚线表示。
+```
+
+可以看到，rdt 的发送端只通过 `rdt_send(data)` 事件接收来自较高层的数据发送请求。在完成一次数据发送请求中需要两个动作：
+
+产生一个包含该数据的分组（经由 `make_pkt(data)` 产生）
+- 然后将该分组通过 `udt_send(packet)` 发送到信道中
+- 完成这两个动作后，重新返回原始状态，继续等待来自较高层的数据发送请求。
+
+而在接收端，rdt 通过 `rdt_rcv(packet)` 事件从底层信道接收一个分组。在一次数据接收过程中同样需要两个动作：
+
+- 从分组中取出数据（经由 `extract(packet, data)` 产生）
+- 然后将数据上传给较高层（通过 `deliver_data(data)` 动作）
+和发送端一样，接收端完成这两个动作后也重新返回原始状态，继续等待从底层信道接收分组。
+
+**需要注意的是，在发送端，引起状态变迁的事件是由较高层应用的过程调用产生的；而在接收端，引起状态变迁的事件是由较低层协议的过程调用产生的。**
+
+现在我们就构造出了适用于可靠信道的可靠数据传输协议 `rdt 1.0` ，因为信道可靠，接收方也不需要提供任何反馈信息给发送方，不必担心出现差错。而且因为假定了接收方接收数据的速率能够与发送方发送数据的速率一样快，所以接收方也没有必要请求发送方慢一点发送。
+
+###### 经具有比特差错(Bit Errors)信道的可靠数据传输协议 rdt 2.0
+
+<u>首先需要明确的一点是：如果发送方知道了哪些分组发送出去后接收方并没有收到，那么发送方就需要重传这些分组。</u>基于这样的重传机制的可靠数据传输协议称为自动重传请求(`Automatic Repeat Request, ARQ`)协议 。
+
+ARQ 协议使用以下三种方法来处理存在比特差错的情况：
+
+`差错检测`。首先我们需要一种机制能够使接收方检测什么时候出现了比特差错。比如 UDP 中使用的因特网检验和字段就是为了这个目的。这些技术要求有额外的比特从发送方发送到接收方，而这些比特将存放在 rdt 2.0 数据分组的分组检验和字段中。
+
+`接收方反馈`。发送方要了解接收方是否正确接收分组的唯一途径就是让接收方提供明确的反馈信息，所以接收方需要反馈“肯定确认”（`ACK`）或者“否定确认”（`NAK`）。rdt 2.0 协议将从接收方向发送方回送 ACK 或 NAK 分组。这些分组在理论上只需要一个比特长，比如用 0 表示 NAK，用 1 表示 ACK。
+
+`重传`。如果接收方收到了受损的分组，发送方必须重传该分组。
+
+以上概念我们需要清楚原理即可，不必背诵。了解rdt 2.0加入错误检测，ACK、NAK反馈，重传可能会导致重复数据出现即可
+
+下面来看一下 rdt 2.0 的有限状态机描述图，现在该数据传输协议（自动重传请求协议）采用了差错检测、肯定确认与否定确认。
+
+![](https://www.doraemonext.com/wp-content/uploads/2015/04/31.jpg)
+
+rdt 2.0 的发送端有两个状态。在最左边的初始状态中，发送端协议正等待来自较高层传下来的数据。当触发 rdt_send(data) 事件时：
+
+- 通过 s`ndpkt = make_pkt(data, checksum)` 产生一个包含待发送数据且带有校验和的分组
+- 然后将该分组通过 `udt_send(sndpkt)` 发送到信道中
+
+
+执行完上述的两个动作后，发送端的状态变迁为“等待接收接收端的 ACK 或 NAK 分组”。接下来根据接收端的响应不同会有不同的变迁方案：
+
+- 如果收到了一个 ACK 分组（`rdt_rcv(rcvpkt) && isACK(rcvpkt)`），那么发送端知道接收端已经成功接收到了刚才发送出去的分组，发送端状态回到初始状态，继续等待下一次由较高层传下来的数据发送请求
+- 如果收到了一个 NAK 分组（`rdt_rcv(rcvpkt) && isNAK(rcvpkt)`），那么发送端知道接收端接收到的分组是受损的，所以调用 udt_send(sndpkt) 重新发送该分组，然后状态不变，继续等待接收接收端的 ACK 或 NAK 分组
+由于 rdt 2.0 的发送端拥有这个特性，所以 rdt 2.0 这样的协议被称为**停等（stop-and-wait）协议**。
+
+rdt 2.0 的接收端仍然只有一个状态。状态变迁取决于收到的分组是否受损，有两种方式：
+
+- 如果收到的分组受损，即 rdt_rcv(rcvpkt) && corrupt(rcvpkt)，则返回 NAK 分组
+- 如果收到的分组完好，即 rdt_rcv(rcvpkt) && notcorrupt(rcvpkt)，则返回 ACK 分组
+处理完后仍然返回自身这个状态，继续等待下一次从底层接收分组并处理。
+
+现在我们得到了一个似乎是可以在有比特差错信道上正常工作的可靠数据传输协议了，但仔细想想，我们没有考虑 ACK 或 NAK 分组受损的情况。如果 ACK 或 NAK 分组受损的时候，我们应该怎么做？
+
+>rdt 1.0和rdt 2.0我们详细地讲解了它们的工作原理，如果不想看这部分，可以直接跳过，后面将不再赘述，如有兴趣，请在博文下方戳原文链接深层学习
+
+###### 经具有比特差错信道的可靠数据传输协议 rdt 2.1 (解决 ACK 或 NAK 分组受损问题)
+解决这个问题比较简单的一个方法是在数据分组中添加一个新的字段，然后让发送端对其数据分组编号，将发送数据分组的序号放在该字段中。于是，接收端只需要检查序号就可以确定收到的分组是否是一次重新传送的分组。因为 rdt 2.0 是一个简单的停等协议，1 比特序号就足够了。
+
+完善了对 ACK 和 NAK 分组受损的情况的处理机制后，我们把完善后的协议称为 rdt 2.1，下面是 rdt 2.1 发送端的有限状态机描述图：
+![](https://www.doraemonext.com/wp-content/uploads/2015/04/41.jpg)
+
+下面是 rdt 2.1 接收端的有限状态机描述图：
+![](https://www.doraemonext.com/wp-content/uploads/2015/04/51.jpg)
+
+现在的状态数是以前的两倍，是因为协议的状态必须反映出目前（由发送端）正发送的分组或（在接收端）希望接受的分组序号是 0 还是 1。
+
+###### 经具有比特差错信道的可靠数据传输协议 rdt 2.2 (NAK-free)
+其实上面的 rdt 2.1 协议在上述假设的底层信道模型中已经工作的不错了，但是我们还可以再简化一下，实现一个无 NAK 的可靠数据传输协议，我们称它为 rdt 2.2。
+
+rdt 2.1 和 rdt 2.2 之间的细微变化在于，接收端此时必须包括由一个 ACK 报文所确认的分组序号（可以通过在接收端有限状态机中，在 make_pkt() 中包括参数 ACK 0 或 ACK 1 来实现），发送端此时必须检查接收到的 ACK 报文中被确认的分组序号（可通过在发送端有限状态机中，在 isACK() 中包括参数 0 或 1 来实现）。
+
+下图是 rdt 2.2 协议发送端的有限状态机描述图：
+![](https://www.doraemonext.com/wp-content/uploads/2015/04/61.jpg)
+
+
+下图是接收端的有限状态机描述图：
+![](https://www.doraemonext.com/wp-content/uploads/2015/04/71.jpg)
+
+考虑在 rdt 2.1 协议中，如果接收端收到了一个受损的分组则会返回 NAK 分组。但是如果不发送 NAK，而是对上次正确接收的分组发送一个 ACK，也能实现与发送 NAK 一样的效果。发送端接收到对同一个分组的两个 ACK（即接收冗余ACK）后，就知道接收端没有正确接收到跟在被确认两次的分组后面的分组。这就是 rdt 2.2 可以取消 NAK 分组的原因。
+
+###### 经具有比特差错的丢包信道(channels with errors and loss)的可靠数据传输协议 rdt 3.0
+现在我们终于可以回到现实世界了，在现实世界中，除了比特受损外，底层信道还会丢包。这时我们应该如何设计协议以保证可靠数据传输呢？
+
+有很多可能的方法用于解决丢包问题，在这里，我们让发送端负责检测和回复丢包工作。果发送端愿意等待足够长的时间以确定该分组缺失已丢失，则它只需要重传该数据分组即可。在 RFC 1323 中，这个时间被假定为 3 分钟。
+
+为了实现基于时间的重传机制，需要一个倒计时计时器，在一个给定的时间量过期后，中断发送端。
+
+故引入`Timer`
+![](https://www.doraemonext.com/wp-content/uploads/2015/04/81.jpg)
+
+下面是传输过程中可能发生的情况
+![](http://www2.ic.uff.br/~michael/kr1999/3-transport/rdt30_examples.gif)
+
+现在 rdt 3.0 已经是一个功能正确的协议，但因为它的本质仍然是停等协议，U<sub>sender</sub>=(L/R) / (RTT + L/R)=0.00027，所以效率实在捉鸡。为了有更高的效率，我们来介绍`流水线`
+
+##### Pipelined protocols[流水线技术]
+流水线技术是解决这种特殊性能问题的一个非常简单的方法：不使用停等方式运行，允许发送端发送多个分组而无需等待确认。
+
+解决流水线的差错恢复有两种基本方法，分别为 回退 N 步（Go-Back-N, GBN） 和 选择重传（Selective Repeat, SR）。
+
+###### Go-Back-N
+![](https://www.doraemonext.com/wp-content/uploads/2015/04/12.jpg)
+
+上图显示了发送方看到的 GBN 协议的序号范围。如果我们将基序号（`base`）定义为最早的未确认分组的序号，将下一个序号（`nextseqnum`）定义为最小的未使用序号（即下一个待发分组的序号），则可将序号范围分割成 4 段。在 `[0, base-1]` 段内的序号对应于已经发送并确认的分组。`[base, nextseqnum-1]` 段对应已经发送但未被确认的分组。`[nextseqnum, base+N-1]` 段内的序号能用于那些要立即发送的分组，如果有数据来自于上层的话。最后，大于或等于 `base+N` 的序号是不能使用的，直到当前流水线中未确认的分组（特别是序号为 base 的分组）已得到确认为止。
+
+在上图中，我们可以把 [base, base+N-1] 看做一个`长度为 N 的窗口`。随着协议的运行，该窗口在序号空间向前滑动。因此，N 常被称为窗口长度（`window size`），GBN 协议也常被称为`滑动窗口协议（sliding-window protocol）`。至于为什么需要限制 N 的范围，是因为这是**流量控制**的方法之一。
+
+可以看到，GBN 协议本身相对于 rdt 3.0 协议有了长足进步，但是仍然有它自己的性能问题，尤其是当窗口长度和带宽时延都很大的时，流水线中有很多分组更是如此。任何单个分组的差错就能引起 GBN 协议重传大量分组，事实上是很多分组根本没必要重传，所以，有了一个更加优化的协议，就是下面要说的 **选择重传（SR）** 协议。
+
+###### Selective Repeat
+SR 协议在 GBN 协议的基础上进行了改进，它通过让发送方仅重传哪些它怀疑在接收方出错（即丢失或受损）的分组而避免了不必要的重传。
+![](https://www.doraemonext.com/wp-content/uploads/2015/04/52.jpg)
+
+上图列举了一些可能出现的问题，如果窗口长度与序号空间大小选择不当，将会产生严重的后果。
+
+显然，接收方并不知道发送方那边出现了什么问题，对于接收方自己来说，上面两种情况是等价的。没有办法区分是第一个分组的重传还是第 5 个分组的初次传输。所以，窗口长度比序号空间小 1 时协议无法正常工作。但窗口应该有多小呢？
+
+答案是：**窗口长度必须小于或等于序号空间大小的一半。**
+
+##### Transmission Control Protocol
+TCP提供一种面向连接的、可靠的字节流服务。面向连接意味着两个使用TCP的应用(通常是一个客户和一个服务器)在彼此交换数据之前必须先建立一个TCP连接。
+
+>TCP段
+
+TCP数据被封装在一个IP数据报中
+
+![](http://cities.lk.net/Imcity_Gifs/TCPSegment.gif)
+
+<br>
+![](https://www.cs.umd.edu/~shankar/417-F01/Slides/chapter3b/img002.gif)
+
+<center><font color="gray">Segment</font></center>
+
+```
+在TCP首部中有 6个标志比特。它们中的多个可同时被设置为 1。
+URG紧急指针(urgent pointer)有效
+ACK 确认序号有效。
+PSH 接收方应该尽快将这个报文段交给应用层。
+RST 重建连接。
+SYN 同步序号用来发起一个连接。
+FIN 发端完成发送任务。
+```
+
+>可靠传输
+
+TCP采用“带重传的肯定确认”技术来实现传输的可靠性。简单的“带重传的肯定确认”是指与发送方通信的接收者，每接收一次数据，就送回一个确认报文，发送者对每个发出去的报文都留一份记录，等到收到确认之后再发出下一报文分组。发送者发出一个报文分组时，启动一个计时器，若计时器计数完毕，确认还未到达，则发送者重新送该报文分组。
+
+简单的确认重传严重浪费带宽，TCP还采用一种称之为“滑动窗口”的流量控制机制来提高网络的吞吐量，窗口的范围决定了发送方发送的但未被接收方确认的数据报的数量。每当接收方正确收到一则报文时，窗口便向前滑动，这种机制使网络中未被确认的数据报数量增加，提高了网络的吞吐量。
+
+TCP通信建立在面向连接的基础上，实现了一种“虚电路”的概念。双方通信之前，先建立一条连接，然后双方就可以在其上发送数据流。这种数据交换方式能提高效率，但事先建立连接和事后拆除连接需要开销。TCP连接的建立采用三次握手的过程，整个过程由发送方请求连接、接收方再发送一则关于确认的确认三个过程组成
+
+![](http://upload-images.jianshu.io/upload_images/2893056-e6ef5ab574674ff1.jpg)
+
+>流量控制与拥塞控制(Flow Control and Congestion Control)
+
+为了提高报文段的传输速率，TCP采用`大小可变的滑动窗口`进行流量控制。窗口大小的单位是`字节`。发送窗口在连接建立时由双方商定，但在通信过程中，接收端可根据自己的接收缓存的大小，随时动态地调整发送端的发送窗口的上限值。这就是接收端窗口`rwnd（receiver window）`，这个值被放在接收端发送的TCP报文段首部的窗口字段中。同时，发送端根据其对当前网络拥塞程度的估计而确定的窗口值，叫做拥塞窗口`cwnd（congestion window）`。其大小与网络的带宽和时延密切相关。发送端设置的当前能够发送数据量的大小叫做发送窗口，发送窗口的上限值由下面公式确定： `发送窗口的上限值＝Min[cwnd,rwnd]`
+
+`Tips:` 收端根据其接收缓存确定，发送端确定cwnd比较复杂
+
+![](http://www.linyibin.cn/images/Technology-ComputerNetworking-Internet-TCP-RevBuffer.png)
+
+##### TCP Congestion Control
+
+###### 慢启动（Slow-Start）
+
+![](http://kfall.net/ucbpage/EE122/lec22/img005.GIF)
+
+主机开发发送数据报时，如果立即将大量的数据注入到网络中，可能会出现网络的拥塞。慢启动算法就是在主机刚开始发送数据报的时候先探测一下网络的状况，如果网络状况良好，发送方每发送一次文段都能正确的接受确认报文段。那么就从小到大的增加拥塞窗口的大小，即增加发送窗口的大小。
+
+###### 拥塞避免（Congestion Control Retrospective）
+是让cwnd缓慢的增加而不是加倍的增长，每经历过一次往返时间就使cwnd增加1，而不是加倍，这样使cwnd缓慢的增长，比慢启动要慢的多。
+
+![](http://alpha.tmit.bme.hu/meresek/tcp_saw_small.jpg)
+
+>AIMD(additive increase multiplicative decrease)
+
+```
+1. 乘法减小：无论在慢启动阶段还是在拥塞控制阶段，只要网络出现超时，就是将cwnd置为1，ssthresh置为cwnd的一半，然后开始执行慢启动算法（cwnd<ssthresh）。
+
+2. 加法增大：当网络频发出现超时情况时，ssthresh就下降的很快，为了减少注入到网络中的分组数，而加法增大是指执行拥塞避免算法后，是拥塞窗口缓慢的增大，以防止网络过早出现拥塞。
+
+这两个结合起来就是AIMD算法，是使用最广泛的算法。拥塞避免算法不能够完全的避免网络拥塞，通过控制拥塞窗口的大小只能使网络不易出现拥塞。
+```
+
+##### Test
+
+Q: why is there a UDP?
+
+A: no connection establishment 、simple、small header size、no congestion control
+
+Q: when should the exponential increase switch to linear? （指数增长何时变成线性？）
+
+A: when cwnd gets to 1/2 of its value before timeout.
+
+
+这一节洋洋洒洒，就这么结束了，你现在的反应也可能是这样的
+
+![](http://is1.mzstatic.com/image/thumb/Purple111/v4/66/fa/44/66fa44d9-bcc5-c51b-78e7-1adb6fa611d0/source/175x175bb.jpg)
+
+不要灰心，还有你好多不知道的，继续修仙吧
+
+____
+
+#### Network Layer(!)
+
+##### 网络层功能
+网络层里最核心的两个功能是：**路由(forwarding)**与**转发(routing)**
+- 路由选择：当分组开始从源主机发往目的主机，网络层必须决定分组该采用的路由或路径。（determine route taken by packets from source to dest. ）
+- 分组转发：当一个分组到达路由器输入链路时，需要将该分组转发到相应合适的输出链路上。（move packets from router’s input to appropriate router output）
+
+##### 网络层提供的两种服务
+网络层可以为用户提供两种服务，一个是面向连接的服务，另一种则是无连接的服务。我们在现有的计算机网络体系结构中，网络层只能单独提供其中一个服务的，两种服务同时提供是不存在的。网络层提供的是主机到主机的服务，运输层提供的是进程到进程的服务
+
+在网络层提供面向连接的计算机网络被称为`虚电路网络(virtual-circuit network)`,而提供无连接的计算机网络则被称为`数据报网络(datagram network)`。
+
+我们首先大致了解一下它们的特点：
+
+###### 虚电路网络(virtual-circuit network)
+虽然因特网是一个数据报网络，但很多其他网络体系结构（ATM、帧中继）却是虚电路网络，因此在网络层使用连接，这些网络层连接被称为虚电路。
+
+虚电路的组成如下：1）源和目的主机之间的路径（即一系列链路和路由器）2）VC号，沿着该路径的每段链路一个号码 3）沿着该路径的每台路由器中的转发表项。
+
+![](http://upload-images.jianshu.io/upload_images/1234352-1a07bef80c5ae33e.png)
+
+如图所示，主机A请求网络与主机B建立一条虚电路，假设虚电路选择路径A-R1-R2-B，并为这三条链路分配VC号12、22、32，这这种情况下，当这条虚电路中的分组离开主机A，VC值12，离开R1，VC值22，离开R2,值32
+
+###### 数据报网络(datagram network)
+在数据报网络中，每当一个端系统要发送分组，就为该分组加上目的端系统的地址，然后将分组推进网络中，无需建立任何虚电路，路由器不维护任何虚电路的状态信息。
+
+现在给两者做个对比
+![](http://static.oschina.net/uploads/space/2014/0804/161217_pBmE_1469576.png)
+
+##### 路由器结构(Router architecture)
+
+前面简单的了解了一下转发，现在详细了解一下。话不多说，先上图！
+
+![](https://electronicspost.com/wp-content/uploads/2016/05/4.6.png)
+
+此图应该清楚的说明了路由器地内部结构和工作原理，它有四种组件构成:
+- Input ports [输入端口]
+- Output ports [输出端口]
+- Switching fabric [交换结构]
+- Routing processor [路由选择处理器]
+
+输入端口要完成查找功能，在这里通过查询转发表决定路由器的输出端口，然后通过交换结构转发到输出端口。
+
+在讨论了上述的转发机制，但是我们并没有提及任何特定的计算机网络，在此，我们应该了解一下，我们最常见的网络-因特网。
+
+先放上一张图审视下网络层内部
+
+![](http://netlab.ulusofona.pt/rc/book/4-network/4_04/04-14.jpg)
+
+由此可知因特网的网络层有三个主要组件：
+1. IP协议
+2. 路由选择部分（计算和维护转发表）
+3. ICMP（报告数据报中的差错和对默写网络层信息请求进行相应的设施）
+
+我们一个一个看
+
+###### IP部分
+
+>IPv4
+
+IPv4，即普遍使用的IP协议，IP协议定义数据传送的基本单元—IP分组及其确切的数据格式。
+
+IPv4数据报格式：
+
+![](http://netlab.ulusofona.pt/rc/book/4-network/4_04/04-24.jpg)
+
+`Tips:` 一个IP分组由首部和数据两部分组成。首部的前一部分是固定长度的，共20字节，是所有IP分组必须具有的。在首部固定部分的后面是一些可选字段，其长度是可变的，用来提供错误检测及安全等机制。
+
+
+>IP数据包分片(fragmentation)
+
+一个链路层数据报能承载的最大数据量称为最大传送单元（MTU）。因为IP数据报被封装在链路层数据报中，故链路层的MTU严格地限制着IP数据报的长度，而且在IP数据报的源于目的地路径上的各段链路可能使用不同的链路层协议，有不同的MTU。当IP数据报的总长度大于链路MTU，就需要将IP数据报中的数据分装在两个或更多个较小的IP数据报中，这些较小的数据报叫做片。
+
+`Expand:` MTU:maximum transmission unit
+
+下面是分片的举例：
+
+片     | 字节     | ID  | 偏移                                           | 标志
+-------|----------|-----|------------------------------------------------|---------------------------
+第一片 | 1480字节 | 777 | 0（表示插入的数据开始于字节0）                 | Flag=1(表示后面还有）
+第二片 | 1480字节 | 777 | 185（表示插入的数据开始于字节1480.185*8 = 1480 | Flag=1（表示后面还有）
+第三片 | 1020字节 | 777 | 370（表示插入的数据开始于字节370*8=2960）      | Flag=0（表示这是最后一片）
+
+注意：为坚持网络内核保持简单的原则，IPv4的设计者决定数据报的重新组装工作放到端系统中，而不是在网络路由器中。
+
+>IPv4地址
+
+连接在Internet中的每一台主机（或路由器）都分配一个`32比特`的全球唯一的标识符，即IP地址。传统的IP地址是分类的地址，分为`A、B、C、D、E`五类。都是由网络号和主机号组成。<br>
+网络号A：1-126 B：128-191 C：192-223 D：224-239 E：240-255
+
+**DHCP(the Dynamic Host Configuration Protocol)**
+
+我们先来看一下什么是DHCP，DHCP(Dynamic Host Configuration Protocol，动态主机配置协议)它可以为客户机自动分配IP地址、子网掩码以及缺省网关、DNS服务器的IP地址等TCP/IP参数，简单来说，就是在DHCP服务器上有一个数据库，存放着IP地址、网关、DNS等参数。当客户端请求使用时，服务器则负责将相应的参数分配给客户端。以避免客户端手动指定IP地址。
+
+来看下DHCP的工作过程，我们可以叫它'dora'(不是动画片里那个=-=):
+
+![](http://www.dcs.bbk.ac.uk/~ptw/teaching/IWT/network-layer/dhcp-interaction.gif)
+
+```
+1.DHCP DISCOVER: 寻找服务器
+　　当DHCP客户端第一次登录网络的时候或者是开机时，此计算机发现本机上没有任何IP地址设定，就会向网络广播去寻找DHCP服务器。该数据包的来源地址会为0.0.0.0，而目的地址则为255.255.255.255。
+　　2. DHCP OFFER分配IP地址
+　　当无线设备监听到客户端发出的寻找服务器的数据包后，它会从那些还没有分配出的IP地址里，选择最前面的的空闲IP，给客户端一个分配IP地址，但这里仅仅是分配，客户端还没有真正应用上。
+　　3. DHCP REQUEST 请求使用
+　　客户端收到无线设备发送回来的分配IP地址数据包，客户端会向网络发送一个ARP数据包，确认网络中没有其他机器使用该IP地址，如果已经有，则重复发送步骤1中的动作;如果没有，则接受该IP地址，并发送一个Dhcprequest数据包给无线路由器，也就是DHCP服务器，请求使用此地址。
+　　4. DHCP ACK IP地址分配确认
+　　当无线设备接收到客户端的Dhcprequest数据包之后，会向客户端发出一个DHCPACK回应，以确认IP地址的正式生效，也就结束了一个完整的DHCP工作过程。
+```
+
+`Tips:` DHCP是基于UDP的应用层协议,是即插即用的(plug-and-play)
+
+>NAT(network address translation)
+
+网络地址转换（NAT）是通过将专用网络地址转换为公用地址，从而对外隐藏了内部管理的IP地址。它使得整个专用网只需要一个全球IP地址就可以与因特网连通，由于专用网本地IP地址是可重用的，所以NAT大大`节省了IP地址的消耗`。同时，它隐藏了内部网络结构，从而`降低了内部网络收到攻击的风险`。
+
+>ICMP(internet control message protocol)
+
+为了提高IP数据报交付成功的机会，在网络层使用了`网络控制报文协议ICMP`来允许主机或路由器`报告差错和异常情况`。ICMP报文作为IP层数据报的数据，加上数据报的首部，组成IP数据报发送出去。ICMP协议是`IP层协议`。
+
+>IPv6
+
+![](http://netlab.ulusofona.pt/rc/book/4-network/4_07/04-40.jpg)
+
+二话不说先扔图。要解决IP地址耗尽的问题的措施有以下三种：1.采用无类别CIDR，使IP地址的分配更加合理；2.采用网络地址转换NAT方法以节省全球IP地址；3.采用具有更大地址空间的新版本IP协议IPv6。前两者只是延长了IPv4地址分配结束的时间，只有第三种方法从根本上解决了IP地址的耗尽问题。
+
+所以说如果考试问你这个你就回答了是吧
+
+```
+IPv6的主要特点如下：
+1）更大的地址空间。IPv6将地址从IPv4的32位增大到了128位
+2）扩展的地址层次结构
+3）灵活的首部格式
+4）改进的选项
+5）允许协议继续扩充
+6）支持即插即用（即自动配置）
+7）支持资源的预分配
+
+IPv6的最大特征还是在于它的保密性
+```
+
+##### Routing Algorithms
+
+看到这里，大家可能又会倒吸一口凉气，毕竟还是有很多人和我一样看见算法就头疼，笔者也是很担心整理不好。前辈们你们是没事可做吗？为什么写这么多概念？？？
+
+![](http://pic.bkill.com/img/download/20170117112640410.jpg)
+
+____
+
+我们举步维艰，艰难地啃着概念...
+
+那么问题来了，什么是路由算法？
+
+你可能给出这样的回答:`是在给定一组路由器及连接路由器链路的情况下,找出一条由源节点到目标节点的最佳路径。`
+
+我肯定会说你好棒棒
+
+其实呢，路由算法分为两大类:非自适应路由算法和自适应路由算法。非自适应路由算法典型代表就是静态路由,而动态路由中所使用到的算法都属于自适应路由算法。而路由表是存储在路由器或者联网计算机中的电子表格或类似的数据库.路由表存储着指向特点那个网络地址的路径。
+
+![](http://www.33lc.com/uploadfile/2017/0210/20170210104919474.jpg)
+
+```
+几种主要的路由算法:
+
+　　　　静态路由算法:
+
+　　　　　　1.最短路径路由算法(Shortest Path Routing).
+
+　　　　　　2.扩散算法
+
+　　　　动态路由算法:
+
+　　　　　　1.距离矢量路由算法(Distance-Vector)
+
+　　　　　　2.链路状态路由算法(Link-State)
+```
+
+`Tips:`<br>
+ 距离矢量路由算法（Distance Vector Routing，DV）是ARPANET网络上最早使用的路由算法，也称Bellman-Ford路由算法和Ford-Fulkerson算法，主要在`RIP（Route Information Protocol）`协议中使用。我们可以记住一个常用的公式：d<sub>x</sub>(y)=min{c(x,v)+d<sub>v</sub>y}<br>
+ 链路状态路由协议是目前使用最广的一类域内路由协议。它采用一种“拼图”的设计策略，即每个路由器将它到其周围邻居的链路状态向全网的其他路由器进行广播。其中我们会了解到迪杰斯特拉(Dijkstra)算法是其中一种用法，其核心是基于最短路径。
+
+我们这里不深入探讨算法的内涵，考试没那么变态，我们理解一些基本点就足够
+
+这两种算法各有特点，分述如下：
+1. 报文复杂性(message complexity)。LS算法要求每个节点知道网络中每条链路的费用，DV算法要求在每次迭代时，在两个直接相连的邻居之间交换报文。
+2. 收敛速度(speed of convergence)。优劣显而易见
+3. 健壮性(robustness)。如果一台路由器发生故障，行为错乱或受到破坏时情况会怎样呢？对于LS算法，路由器能够像其连接的的一条链路广播不正确费用。一个节点也可损坏或丢弃他收到的任何LS广播分组作为LS广播的一部分。但是一个LS节点仅计算自己的转发表：其他节点为自己做类似的计算。这就意味这在LS算法下，路由计算是有些孤立的，提供了一定程度的健壮性。在DV算法下，一个节点可向任意或所有的目的节点通告其不正确的最低费用路径。DV算法中一个不正确的节点计算值会扩散到整个网络。
+
+##### Hierarchical routing
+为了解决路由表的规模问题（scale）和实现办公自动化（Administrative autonomy），我们来说明下分层路由的出现。
+
+自治系统内部的路由选择称域内路由选择，自治系统之间的路由选择称域间路由选择。也就是我们常说的 `intra-AS` 和 `inter-AS`
+
+![](http://www.networkinginfoblog.com/contentsimages/An%20example%20of%20interconnected%20autonomous%20systems.JPG)
+
+##### 因特网的路由协议
+
+###### Intra-AS Routing(also known as interior gateway protocols [IGP])
+我们来介绍常用的三种路由协议
+
+>RIP(Routing Information Protocol)
+
+路由信息协议（RIP）是内部网关协议中最先得到广泛应用的协议，是一种分布式的基于距离向量的路由选择协议，其最大优点就是简单。缺点是RIP限制了网络的规模，它能使用的最大距离为15（16为不可达），除此之外开销很大。
+
+>OSPF (Open Shortest Path First)
+
+开放最短路径优先协议是使用分布式链路状态路由算法的典型代表。OSPF收敛速度快，适应各种规模，将协议自身的开销控制到最小，同时也具有良好的安全性。
+
+`Tips:` OSPF是网络层协议，它不使用UDP或TCP而是直接IP数据报传送。
+
+###### Intra-AS Routing：BGP
+
+BGP (Border Gateway Protocol): 边界网关协议是不同自治系统的路由器之间交换路由信息的协议。外部网关协议，边界网关协议常常应用于互联网的网关之间。路由表包含已知路由器的列表、路由器能够达到的地址以及到达每个路由器的路径的跳数。
+
+边界网关协议BGP只能是力求寻找一条能够到达目的网络且比较好的路由，而并非要寻找一条最佳路由。BGP采用的是路径向量路由选择协议，它与距离向量协议和链路状态协议有很大区别。BGP协议是应用层协议，基于TCP的。
+
+eBGP —— (external Border Gateway Protocol) 外部边界网关协议，用于在不同的自治系统间交换路由信息。
+
+iBGP —— (internal Border Gateway Protocol)的主要作用是向你的内部路由器提供更多信息。iBGP路由器必须以全网状结构相连，以防止路由环回。如果使用了路由反射器或路由联盟，那么iBGP网状结构可能遭遇收敛问题，而导致路由黑洞。
+
+###### Broadcast and Multicast Routing
+
+广播路由选择需要提供一种从源结点到网络中的所有其他结点交付分组的服务。而多播是一对多的关系，是相对于子网的所有节点而言。
+
+一笔带过吧，说多了心痛。
+
+##### Test
+
+Q: 转发表是如何得到的（what is the relationship between routing and forwarding）?
+
+A: 路由选择算法决定了插入路由器的转发表的值，路由器接收路由选择协议报文，该信息被用于配置其转发表。(routing algorithm determines end-end-path through network,forwarding table determines local forwarding at this router)
+
+Q: What are the three phases of virtual circuits??
+
+A:  虚电路建立（VC setup）、 数据传送（Data transfer）、虚电路拆除（VC teardown）
+
+Q: how does network get subnet part of IP addr?
+
+A: gets allocated portion of its provider ISP’s address space(获取其提供程序ISP的地址空间的分配部分。)
+
+Q: How do you migrate from IPV4 to IPV6?
+
+A: 1.双栈（dual-stack），2.建隧道(tunnel)
+
+____
+
+#### Link Layer and LAN
+
+首先，能看到现在，我对你的生命力感到由衷的钦佩。
+
+![](http://joymepic.joyme.com/article/uploads/allimg/201609/1474956272101964.jpg)
+
+但是革命仍未结束，同志仍须努力
+
+##### About Service
+其设计的初衷就是顺利为网络层提供数据服务，不考虑可靠性，可靠性的部分由传输层的TCP协议实现
+
+为了使数据链路层能更好地适应多种局域网标准，802 委员会就将局域网的数据链路层拆成两个子层：
+- 逻辑链路控制 `LLC (Logical Link Control)`子层
+- 媒体接入控制 `MAC (Medium Access Control)`子层。
+
+数据链路层使用的信道主要有以下两种类型：
+1. 点对点信道
+2. 广播信道（多用于LAN）
+
+点对点信道的数据链路层的协议数据单元为帧(`frame`)
+
+```
+点对点信道的数据链路层在进行通信时的主要步骤：
+（1）结点A的数据链路层把网络层交下来的IP数据报添加首部和尾部封装成帧。
+（2）结点A把封装好的帧发送给结点B的数据链路层。
+（3）若结点B的数据链路层收到的帧无差错，则从收到的帧中提取出IP数据报上交给上面的网络层；否则丢弃这个帧。
+```
+
+![](http://www.networkinginfoblog.com/contentsimages/Network%20adaptors%20communicating.JPG)
+
+<center><font color="gray">网络适配器之间的通信</font></center>
+
+帧同步虽然可以区分每个数据帧的起始和结束，但是还没有解决数据正确传输的两方面问题：一、如果有帧出现了错误？二、如果有帧丢失了呢？这都是数据链路层确保向网络层提供可靠数据传输服务解决的问题，也就是数据链路层的差错控制功能。
+
+##### Error-Detection and -Correction Techiniques(错误检测与纠正)
+
+###### 错误检测
+在数据链路层检测数据传输错误的方法一般是通过对差错编码进行校验来实现，常见的有`奇偶校验码`和`循环冗余校验（CRC）`
+
+>Parity Checks(奇偶校验)
+
+没啥好说的，最后一位设置校验位即可，我相信你懂
+
+>Cyclic redundancy check
+
+我们主要说说这个，循环冗余校验是一种根据传输或保存的数据而产生固定位数校验码的方法，主要用来检测或校验数据传输或者保存后可能出现的错误。生成的数字在传输或者储存之前计算出来并且附加到数据后面，然后接收端进行检验确定数据是否发生变化。（好像是考点，你最好看看）
+
+CRC码可能看起来是这个样子
+
+![](http://www.networkinginfoblog.com/contentsimages/CRC.JPG)
+
+我们来举一个CRC计算的例子方便入门
+
+![](http://static.oschina.net/uploads/space/2014/0924/111754_g725_937095.jpg)
+
+【说明】“模2除法”与“算术除法”类似，但它既不向上位借位，也不比较除数和被除数的相同位数值的大小，只要以相同位数进行相除即可。
+
+先看下一个对链路层很重要的问题：如何协调多个发送和接收节点对一个共享广播信道的访问，这就是多路访问问题。
+
+##### Multiple access protocols
+
+多路访问协议大致分为3种：信道划分协议（`channel partitioning`）、随机接入协议（`random access`）和轮流协议（`taking turns`）。
+
+###### 信道划分
+
+>TDMA: time division multiple access (时分多路复用)
+
+TDM将时间划分为时间帧，并进一步划分每个时间帧为N个时隙。TDM消除了碰撞，而且非常公平（R/Nbps的速率）。但是它有两个缺陷：节点被限制于R/Nbps的平均速率。节点必须等待它在传输序列中的轮次。
+
+>FDMA: frequency division multiple access (频分多路复用)
+
+FDM将Rbps信道划分为不同的频段（每个频段具有R/N带宽），并把每个频率分配给N个节点中的一个。不过它跟TDM的优缺点一样。
+
+>CDMA: code division multiple access (码分多路复用)
+
+我们后续在无线网中说到
+
+###### 随机接入
+在随机接入协议中，一个传输节点总是以信道的全部速率（即Rbps）进行发送。当有碰撞时，涉及碰撞的每个节点反复地重发它的帧，直到该帧无碰撞地通过为止。但是当一个节点经受一次碰撞时，它不必立刻重发该帧。相反，它在重发该帧之前等待一个随机时延。这里介绍最常用随机接入协议，即`ALOHA协议`和`载波侦听多路访问协议（CSMA）`。
+
+>ALOHA
+
+ALOHA又分为 `Pure ALOHA` 和 `Slotted ALOHA`
+- 纯ALOHA：简单，当传输点有数据需要传送的时候，它会向立即向通讯频道传送。可能会引发不少冲突(e=0.18，糟糕的传输率)
+- 时隙ALOHA：这是对纯ALOHA协议的一个改进。改进之处在于，它把频道在时间上分段，每个传输点只能在一个分段的开始处进行传送。每次传送的数据必须少于或者等于一个频道的一个时间分段。这样很大的减少了传输频道的冲突。效率是`1/e=0.37`
+
+>CSMA (carrier sense multiple access)
+
+```
+关于CSMA，如果比喻成与人谈话，有礼貌的人谈话有两个重要规则：
+
+第一：说话之前先听。
+
+第二：如果与他人同时开始说话，停止说话。
+```
+
+说话前先听，也就是载波侦听（carrier sensing），即一个节点在传输前先听信道。如果来自另一个节点的帧正向信道上发送，节点则等待一段随机时间后再侦听信道。如果侦听到时空闲的，则开始传输，否则再等待另一段随机时间，继续重复整个过程。
+
+如果同时说话，那么都停止说话，在网络领域中被称为碰撞检测（collision detection），即一个传输节点在传输时一直在侦听信道，如果它检测到另一节点正在传输干扰帧，它就停止传输，用某个协议来确定应该在什么时候再尝试下一次传输。
+
+这两个规则包含在载波侦听多路访问（CSMA）和具有碰撞检测的CSMA（CSMA with Collision Detection， CSMA/CD）协议族中。
+
+`Expand:` CSMA/CD efficiency=1/(1+5t<sub>prop</sub>/t<sub>trans</sub>)
+
+###### 轮流协议
+这里讨论比较重要的两种协议。第一种是轮询协议（`polling protocol`），要求这些节点之一要被指定为主节点。主节点以循环的方式轮询每个节点。轮询协议消除了困扰随机接入协议的碰撞和空时隙，使得轮询取得高得多的效率。但也有缺点，第一个缺点是该协议引入`轮询时延`，即通知一个节点它可以传输所需的时间。第二个缺点就是主节点有故障，整个信道将变得不可操作。第二轮流协议是令牌传递协议(`token-passing protocol`)，在这个协议中没有主节点。一个小的称为令牌的特殊目的帧在节点之间以某种固定的次序进行交换。
+
+>polling
+
+![](https://image.slidesharecdn.com/5-140914042058-phpapp01/95/tcpip-data-link-layer-29-638.jpg)
+
+>token-passing
+
+![](https://image.slidesharecdn.com/tema3protocolosdebajonivelenlacegrvv2-140408041003-phpapp01/95/tema3-protocolos-de-bajo-nivel-enlace-grv-v2-41-638.jpg)
+
+##### link-Layer Addressing
+
+###### MAC address
+
+MAC（Medium/Media Access Control）地址，用来表示互联网上每一个站点的标识符，采用十六进制数表示（hexadecimal (base 16) notation
+），共六个字节（48位）。
+
+###### ARP协议(Address Resolution Protocol)
+直白的说法是：在IP以太网中，当一个上层协议要发包时，有了该节点的IP地址，ARP就能提供该节点的MAC地址。 　
+
+`Tips:` ARP协议只使用于局域网中,点对点的连接是不需要ARP协议的,ARP协议的基本功能就是通过目标设备的IP地址，查询目标设备的MAC地址，以保证通信的顺利进行。
+
+ ARP协议的本质是完成网络地址到物理地址的映射。从概念上将就是找到一个映射方法f,使得“物理地址 = f(网络地址)“。物理地址有两种基本类型：以太网类型和令牌环网类型。网络地址特指IP地址，对映射方法的要求就是高效。
+
+![ ](http://www.echojb.com/img/2016/10/09/5-18.png)
+
+###### Ethernet
+
+我们可以将 802.3 局域网简称为“以太网”
+
+`Tips:` 这里不做过多讲解，有兴趣可以翻阅查看以太网的帧结构，只需知道它所用的MAC协议是CSMA/CD就好
+
+###### Link-Layer Switches
+
+老师说不是重点，所以祝愿各位自学成才
+
+
+##### Test
+
+Q: Where is the link layer implemented?
+
+A: in a network adapter.(network interface card,NIC).
+
+Q: LAN according to the topology which can be divided into several kinds?
+
+A: 总线结构、环型结构、星型结构、网状结构、树型结构以及混合型结构。
+
+Q: Why does the APR query need to be sent in the broadcast frame?Why does the APR response have to be sent in a frame containing a specific destination MAC address?
+
+A：APR查询的目的是为了获取目标主机的物理地址，在网络通讯中，无明确地址的通讯只能通过广播方式来进行。,因为ARP响应对象在收到ARP广播后向ARP广播机器反馈自己的MAC信息就需要向ARP广播方发送这个报文.而ARP广播方是已知道MAC地址的,所以反馈信息的时候会带上具体的MAC地址,如果该报文不带具体MAC地址的话,将会引起连绵不绝的网络风暴。
+
+
+
+____
+
+
+没想到吧，你已经不知不觉看完了本书的许多重点，虽然你应该没懂多少，但效果还是有的对吧。少侠留步，还有一些无线网和移动网的知识我们没说，咱们下节继续。
+
+![](http://ubq.ubiaoqing.com/ubiaoqingc3647501ab1c6313e92e90e23e8d503e.jpg)
+
+____
+
+#### Wireless and Mobile Network
+
+喜大普奔，我们迎来了最后一章，是不是内心还有点小窃喜，废话说了很多，我们进入正题。
+
+无线网络（wireless network）是采用无线通信技术实现的网络。无线网络既包括允许用户建立远距离无线连接的全球语音和数据网络，也包括为近距离无线连接进行优化的红外线技术及射频技术，与有线网络的用途十分类似，最大的不同在于传输媒介的不同，利用无线电技术取代网线，可以和有线网络互为备份。
+
+无线网络的三个主要构成:
+- Wireless hosts
+- Wireless links
+- Base station
+
+```
+特点：
+1、有线：需要设备之间使用网线连接，这样限制了设备之间的距离。
+2、无线：通过无线协议实现数据传输或者网络连接，一般室内50m范围内可以全方位传输数据。不过无线容易被电磁波干扰，而且墙壁对信号削弱也比较大。
+一般室内使用，建议直接无线。
+```
+
+无线网中极其重要的一个协议是CDMA，我们具体看看应用场景
+
+##### WiFi: 802.11 Wireless LANs
+IEEE 802.11是现今无线局域网通用的标准，两个设备可以自行构建临时网络，也可以在基站(`Base Station, BS`)或者接入点(`Access Point，AP`)的协调下通信。为了在不同的通讯环境下取得良好的通讯质量，采用`CSMA/CA(Carrier Sense Multiple Access／Collision Avoidance)`硬件沟通方式
+
+`Expands:` 802.11和Wi-Fi技术并不是同一个东西。Wi-Fi标准是802.11标准的一个子集，并且是Wi-Fi联盟负责管理
+
+WLAN有以下三种网络拓扑结构:
+```
+1) 独立基本服务集(Independent BSS, IBSS)网络(也叫ad-hoc网络)
+2) 基本服务集(Basic Service Set, BSS)网络
+3) 扩展服务集(Extent Service Set, ESS)网络
+```
+
+>AD-Hoc网络
+
+![](http://images.cnitblog.com/i/532548/201404/300855241739762.jpg)
+
+>BSS网络
+
+![](http://images.cnitblog.com/i/532548/201404/300857252362082.jpg)
+
+对于个人PC来说，使用最多的所谓"无线Wi-Fi"指的就是BSS网络模式，我们通过`AP(Access Point)`接入点来接入网络
+
+>ESS网络
+
+![](http://images.cnitblog.com/i/532548/201404/300859277052930.jpg)
+
+其中，ESS中的DS(分布式系统)是一个抽象系统，用来连接不同BSS的通信信道(通过路由服务)，这样就可以消除BSS中STA与STA之间直接传输距离受到物理设备的限制。
+
+我们知道数据链路层是一个很靠近底层的通信协议，它使用`Bit`来表示信息(也使用Bit来标识数据包的开始和结束)，所以数据链路层的协议格式并没有强制要求一个固定的长度，即802.11协议`长度是可变的`。不同功能的数据帧长度会不一样。这一特性说明mac802.11数据帧显得更加灵活，然而，也会更加复杂。
+
+`Tips:` 记住每一个AP都有一个SSID(Service Set Identifier),SSID技术可以将一个无线局域网分为几个需要不同身份验证的子网络，每一个子网络都需要独立的身份验证，只有通过身份验证的用户才可以进入相应的子网络，防止未被授权的用户进入本网络
+
+##### Beyond 802.11:Bluetooth and WiMAX
+蓝牙：802.15协议，WiMAX：802.16协议
+
+##### Celluar Internet Access
+蜂窝网络或移动网络(Cellular network)是一种移动通信硬件架构，把移动电话的服务区分为一个个正六边形的小子区，每个小区设一个基站，形成了形状酷似“蜂窝”的结构，因而把这种移动通信方式称为蜂窝移动通信方式。
+蜂窝网络又可分为模拟蜂窝网络和数字蜂窝网络，主要区别于传输信息的方式。
+
+蜂窝网络组成主要有以下三部分：移动站，基站子系统，网络子系统。移动站就是网络终端设备，比如手机或者一些蜂窝工控设备。基站子系统包括移动基站（大铁塔）、无线收发设备、专用网络（一般是光纤）、无线的数字设备等等的。基站子系统可以看作是无线网络与有线网络之间的转换器。
+
+便于理解，我们以GSM网络为研究对象（找了半天，终于有张不错的图）
+![](https://docstore.mik.ua/univercd/illus/7/14/77014.gif)
+
+我们来分析下构成
+
+GSM数字移动通信系统主要由`移动交换系统NSS`，`基站子系统BSS`，`维护操作子系统OMS`和`移动台MS`构成，下面具体描述各部分的功能。
+
+我们先从BSS看，BSS是NSS和MS之间的桥梁，主要完成无线通信管理和无线收发功能。BSS主要包括基站控制器BSC和基站收发信台BTS两个部分。
+1. BSC（Base Station Controller）:基站控制器，处理所有的与无线信号有关的工作：小区的切换、无线资源管理等。位于MSC与BTS之间，具有对一个或者多个BTS进行控制和管理的功能，主要完成无线信道的分配、BTS和MS发射功率的控制以及越区信道切换等功能。BSC也是一个小型的交换机，它把局部网络汇集后通过A接口与MSC相连。
+2. BTS（Base Transceiver Controller）：基站收发信机，负责无线信号的收发。基站子系统的无线收发设备，由BSC控制，主要负责无线传输功能，完成无线与有线的转换、无线分集、无线信道加密、跳频等功能。BTS通过Abis接口与BSC相连，通过空中接口Um与MS相连。此外BSS系统还包括编码变换和速率适配单元TRAU。TRAU通常位于BSC与MSC之间，主要完成16kbps的RPE-LTP编码和64kbps的A律PCM编码之间的码型变换。
+
+我们可以从图中看到，一个cell的构成由B`ase station`，`Mobile user`，和`air-interface`三个部分参与
+
+再转而去看NSS中的MSC，`MSC（Mobile Service Switching Center）`：移动业务交换中心，GSM系统的核心,完成基本交换的动作和通讯连接，是一个重要接口
+
+其他部分不作详细描述
+____
+
+
+#### 之前可能遗漏的知识点
+
+>链路层提供的通信方式
+
+串行通讯的基本概念:与外界的信息交换称为通讯.基本的通讯方式有并行通讯和串行通讯两种.
+
+一条信息的各位数据被同时传送的通讯方式称为并行通讯.并行通讯的特点是:各数据位同时传送,传送速度快、效率高,但有多少数据位就需多少根数据线,因此传送成本高,且只适用于近距离(相距数米)的通讯.
+
+一条信息的各位数据被逐位按顺序传送的通讯方式称为串行通讯.串行通讯的特点是:数据位传送,传按位顺序进行,最少只需一根传输线即可完成,成本低但送速度慢.串行通讯的距离可以从几米到几千米.
+
+根据信息的传送方向,串行通讯可以进一步分为单工、`半双工和全双工三种`。_信息只能单向传送为单工;信息能双向传送但不能同时双向传送称为半双工;信息能够同时双向传送则称为全双工_
+
+>IP子网划分
+
+我们之前提到过ip地址划分为5类，在日常网络环境中，基本是都在使用B,C两大类地址，而ADE这3类地址都不大可
+能被使用到。
+
+子网掩码的简单叙述：子网掩码是一个32位地址，用于屏蔽IP地址的一部分以区别网络标识和主机标识，并说明该IP地址是在局域网上，还是在远程网上。
+
+接下来我们可以看一下子网划分的例子：
+
+```
+假如给你一个C类的IP地址段：
+192.168.0.1-192.168.0.254，其中192.168.0 这个属于网络号码，而1～254表示这个网段中最大能容纳254台电脑主机。我们现在要做的就是把这254台主机再次划分一下，将它们区分开来。
+
+192.168.0.1-192.168.0.254默认使用的子网掩码为255.255.255.0，其中的0在2进制中表示，8个0.因此有8个位置没有被网络号码给占用，2的8次方就是表示有256个地址，去掉一个头（网络地址）和一个尾（主机地址），表示有254个电脑主机地址，因此我们想要对这254来划分的话，就是占用最后8个0中的某几位。
+
+假如占用第一个0.那么2进制表示的子网掩码为
+11111111.11111111.11111111.10000000。转换为10进制就为255.255.255.128，那么这时电脑主机应该为多少？其实很简单，就是2的7次方了(不再是原来的2的8次方了），2的7次方=128，因此假如子网掩码为255.255.255.128的话，这个C类地址可以被区分为2个网络，每个网络中最多
+有128台主机。 192.168.0.1-192.168.0.127为一个，192.168.0.128-192.168.0.255为第二个。
+
+再举个例子，假如还是C类地址，其IP范围为192.168.0.1-192.168.0.254，假如子网掩码255.255.255.192（也就是最后8为主机位，
+被占用了2位，2进制表示为11111111.11111111.11111111.11000000），
+那么这个网段的电脑主机数目就是2的6次方=64台，总共有2的2次方=4个网段。第一个网段为192.168.0.1-192.168.0.63，第二个网段为192.168.0.64-192.168.0.127，第三个网段为192.168.0.127-192.168.0.191，第四个
+网段为192.168.0.192-192.168.0.254。```
+
+如果你想结合实际情境去划分，请戳[Me](http://blog.chinaunix.net/uid-20788636-id-1841323.html)
+
+#### Summary
+
+到此，我们整个计算机网络就学习完毕了，不知道你从中看懂了多少，反正我是不抱太大期望。笔者虽然从头写了一遍，但也看到许多自己感到晦涩难懂的地方。我只能从内心祝福你们考试顺利拿到高分（ji ge jiu hao）
+
+![](http://ws4.sinaimg.cn/large/9150e4e5ly1fg5iy821n8g208c08k0tr.gif)
+
+另外对于其他的网友而言，你可以把它当作一篇由浅入深的笔记，里面网罗了许多知识，需要静静品读，勤加思考才会有充足的收获，切勿急躁，相信如果你全部理解，你一定是天纵之才！
+
+____
+
+-End
+
+by:小栗子
+
+参考作者博文：<br>
+[计算机网络层](http://blog.csdn.net/hongchh/article/details/52610639) / [传输层之多路复用与多路分解](http://www.tuicool.com/articles/QfeqqmV) / [可靠数据传输原理（上）](https://www.doraemonext.com/archives/653.html) / [可靠数据传输原理（下）](https://www.doraemonext.com/archives/702.html) / [计算机网络传输层](http://blog.csdn.net/u010126059/article/details/50428922) / <br>
+[网络层学习笔记](http://blog.csdn.net/wisewolf_life/article/details/44900245) / [LS和DV算法的比较](http://blog.csdn.net/friendbkf/article/details/48808533) / [BGP讲解](http://blog.csdn.net/zhouwei1221q/article/details/45420223) / [多路访问协议](http://blog.csdn.net/chenyi8888/article/details/5313557) / <br>
+[计算机网络数据链路层](http://blog.csdn.net/gscienty/article/details/44114743) / [ARP协议详解](http://blog.csdn.net/tigerjibo/article/details/7351992) / [局域网&以太网](http://blog.csdn.net/u012152619/article/details/48545063) / [802.11协议帧](http://blog.csdn.net/robertsong2004/article/details/42805803) / [GSM网络结构](http://blog.csdn.net/u011456016/article/details/51471971) / [串口扫盲](http://www.cnblogs.com/jason-lu/articles/3171870.html)

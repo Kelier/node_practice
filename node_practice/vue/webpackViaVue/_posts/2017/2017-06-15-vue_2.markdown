@@ -1,0 +1,349 @@
+### 进阶
+
+#### 导航钩子
+正如其名，vue-router 提供的导航钩子主要用来拦截导航，让它完成跳转或取消。有多种方式可以在路由导航发生时执行钩子：全局的, 单个路由独享的, 或者组件级的。
+
+##### 全局钩子
+
+1.router.beforeEach
+```
+const router=new VueRouter({...})
+
+router.beforeEach((to,from,next)=>{
+  //...
+  })
+```
+
+当导航被触发，before钩子按照创建顺序调用，因为钩子是异步解析执行的，所以在所有钩子resolve完之前一直处于等待中。
+
+每个钩子方法接受三个参数
+>to:Route:表示即将进入的**目标路由对象**
+
+> from:Route:表示当前导航正要离开的路由
+
+>next:Function:表示一定要调用该方法来resolve这个钩子
+- next(): 进行管道中的下一个钩子。如果全部钩子执行完了，则导航的状态就是 confirmed （确认的）。
+- next(false): 中断当前的导航。如果浏览器的 URL 改变了（可能是用户手动或者浏览器后退按钮），那么 URL 地址会重置到 from 路由对应的地址。
+- next('/') 或者 next({ path: '/' }): 跳转到一个不同的地址。当前的导航被中断，然后进行一个新的导航。
+
+after钩子里面buxiangbefore钩子，它没有next方法，不能改变导航
+
+##### 某个路由独享的钩子
+···
+const router = new VueRouter({
+  routes: [
+    {
+      path: '/foo',
+      component: Foo,
+      beforeEnter: (to, from, next) => {
+        // ...
+      }
+    }
+  ]
+})
+···
+
+##### 组件内的钩子
+- beforeRouteEnter
+- beforeRouteUpdate
+- beforeRouteLeave
+
+```
+const Foo = {
+  template: `...`,
+  beforeRouteEnter (to, from, next) {
+    // 在渲染该组件的对应路由被 confirm 前调用
+    // 不！能！获取组件实例 `this`
+    // 因为当钩子执行前，组件实例还没被创建
+  },
+  beforeRouteUpdate (to, from, next) {
+    // 在当前路由改变，但是该组件被复用时调用
+    // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
+    // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+    // 可以访问组件实例 `this`
+  },
+  beforeRouteLeave (to, from, next) {
+    // 导航离开该组件的对应路由时调用
+    // 可以访问组件实例 `this`
+  }
+}
+```
+
+<hr>
+#### 路由元信息
+
+定义路由可以设置meta字段
+```
+const router=new VueRouter({
+  routes:[
+  {
+    path:'/foo',
+    component:Foo,
+    children:[
+    {
+      path:'bar',
+      component:Bar,
+      //a meta field
+      meta{
+        requireAuth:true
+      }
+    }
+    ]
+  }
+  ]
+  })
+```
+
+routes配置中的每个路由对象被称作**路由记录**，路由记录是可以嵌套的，当一个路由匹配成功，就可以匹配多个路由记录
+
+一个路由匹配到的所有路由记录会暴露为 $route 对象（还有在导航钩子中的 route 对象）的 $route.matched 数组。因此，我们需要遍历 $route.matched 来检查路由记录中的 meta 字段。
+
+下面展示一个例子
+```
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (!auth.loggedIn()) {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next() // 确保一定要调用 next()
+  }
+})
+```
+<hr>
+
+#### 过渡动效
+
+<router-view> 是基本的动态组件，所以我们可以用 <transition> 组件给它添加一些过渡效果：
+```
+<transition>
+  <router-view></router-view>
+</transition>
+```
+
+`<transition>`在这里的所有功能都适用
+
+##### 单个路由的过渡
+
+如果你想让每个路由组件有各自的过渡效果，可以在各路由组件内使用 <transition> 并设置不同的 name。
+```
+const Foo = {
+  template: `
+    <transition name="slide">
+      <div class="foo">...</div>
+    </transition>
+  `
+}
+
+const Bar = {
+  template: `
+    <transition name="fade">
+      <div class="bar">...</div>
+    </transition>
+  `
+}
+```
+
+##### 基于路由的动态过渡
+
+```
+<!-- 使用动态的 transition name -->
+<transition :name="transitionName">
+  <router-view></router-view>
+</transition>
+// 接着在父组件内
+// watch $route 决定使用哪种过渡
+watch: {
+  '$route' (to, from) {
+    const toDepth = to.path.split('/').length
+    const fromDepth = from.path.split('/').length
+    this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
+  }
+}
+```
+
+<hr>
+#### 数据获取
+渲染用户信息时，可以通过两种方式来实现：
+
+1. 导航完成后获取：先完成导航，然后在接下来的组件生命周期钩子中获取数据，获取期间显示【加载中】
+2. 导航完成前获取：导航完成前，在路由的enter钩子中获取数据，获取数据成功后执行导航
+
+###### 导航完成后获取数据
+
+当你使用这种方式时，我们会马上导航和渲染组件，然后在组件的 created 钩子中获取数据。这让我们有机会在数据获取期间展示一个 loading 状态，还可以在不同视图间展示不同的 loading 状态。
+
+假设我们有一个 Post 组件，需要基于 $route.params.id 获取文章数据：
+```
+<template>
+  <div class="post">
+    <div class="loading" v-if="loading">
+      Loading...
+    </div>
+
+    <div v-if="error" class="error">
+      {{ error }}
+    </div>
+
+    <div v-if="post" class="content">
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.body }}</p>
+    </div>
+  </div>
+</template>
+export default {
+  data () {
+    return {
+      loading: false,
+      post: null,
+      error: null
+    }
+  },
+  created () {
+    // 组件创建完后获取数据，
+    // 此时 data 已经被 observed 了
+    this.fetchData()
+  },
+  watch: {
+    // 如果路由有变化，会再次执行该方法
+    '$route': 'fetchData'
+  },
+  methods: {
+    fetchData () {
+      this.error = this.post = null
+      this.loading = true
+      // replace getPost with your data fetching util / API wrapper
+      getPost(this.$route.params.id, (err, post) => {
+        this.loading = false
+        if (err) {
+          this.error = err.toString()
+        } else {
+          this.post = post
+        }
+      })
+    }
+  }
+}
+```
+
+###### 导航完成前获取数据
+
+通过这种方式，我们在导航转入新的路由前获取数据。我们可以在接下来的组件的 beforeRouteEnter 钩子中获取数据，当数据获取成功后只调用 next 方法。
+```
+export default {
+  data () {
+    return {
+      post: null,
+      error: null
+    }
+  },
+  beforeRouteEnter (to, from, next) {
+    getPost(to.params.id, (err, post) =>
+      if (err) {
+        // display some global error message
+        next(false)
+      } else {
+        next(vm => {
+          vm.post = post
+        })
+      }
+    })
+  },
+  // 路由改变前，组件就已经渲染完了
+  // 逻辑稍稍不同
+  watch: {
+    $route () {
+      this.post = null
+      getPost(this.$route.params.id, (err, post) => {
+        if (err) {
+          this.error = err.toString()
+        } else {
+          this.post = post
+        }
+      })
+    }
+  }
+}
+```
+
+<hr>
+#### 滚动行为
+使用前端路由，当切换到新路由时，想要页面滚到顶部，或者是保持原先的滚动位置，就像重新加载页面那样。 vue-router 能做到，而且更好，它让你可以自定义路由切换时页面如何滚动。
+
+>注意: 这个功能只在 HTML5 history 模式下可用。
+
+当创建一个 Router 实例，你可以提供一个 scrollBehavior 方法：
+
+```
+const router=new VueRouter({
+  routes:[...],
+  scrollBehavior(to,from,savePosition){
+    // return 期望滚动到的位置
+  }
+  })
+```
+
+scrollBehavior 方法接收 to 和 from 路由对象。第三个参数 savedPosition 当且仅当 popstate 导航 (通过浏览器的 前进/后退 按钮触发) 时才可用。
+
+这个方法返回滚动位置的对象信息，长这样：
+
+- { x: number, y: number }
+- { selector: string }
+
+如果返回假的布尔值或者空对象，就不会发生滚动
+
+如果你要模拟**滚动到锚点**的行为
+```
+scrollBehavior (to, from, savedPosition) {
+  if (to.hash) {
+    return {
+      selector: to.hash
+    }
+  }
+}
+```
+
+<hr>
+#### 懒加载
+当打包构建应用时，Javascript 包会变得非常大，影响页面加载。如果我们能把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，这样就更加高效了。
+
+庆幸的是，我们利用vue的异步加载组件和webpack的code splitting feature可以轻松实现这个功能
+
+```
+const Foo=resolve=>{
+  //require.ensure是webpack的用法,用以代码拆分
+  require.ensure(['./Foo.vue'],()=>{
+    resolve(require(./Foo.vue));
+    })
+}
+```
+
+还有另一种代码分块的语法，使用AMD风格的require
+```
+const Foo=resolve=>require([./Foo.vue],rresolve)
+```
+
+而且不需要改变任何路由配置，只需要和之前一样使用Foo
+```
+const router=new VueRouter({
+  routes:[
+  {path:'/foo',component:Foo}
+  ]
+  })
+```
+
+###### 把组件按组分块
+有时候我们想把某个路由下的所有组件都打包在同个异步 chunk 中。只需要 给 chunk 命名，提供 require.ensure 第三个参数作为 chunk 的名称
+
+详情请转webpack教程
+
+End.
+
+搬运自vuejs.org

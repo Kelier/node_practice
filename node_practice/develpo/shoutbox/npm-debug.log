@@ -1,0 +1,1124 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'G:\\node\\node.exe',
+1 verbose cli   'G:\\node\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'bcrypt' ]
+2 info using npm@3.10.10
+3 info using node@v6.10.3
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData bcrypt@0.7.3
+8 silly fetchNamedPackageData bcrypt
+9 silly mapToRegistry name bcrypt
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry data Result {
+12 silly mapToRegistry   raw: 'bcrypt',
+12 silly mapToRegistry   scope: null,
+12 silly mapToRegistry   escapedName: 'bcrypt',
+12 silly mapToRegistry   name: 'bcrypt',
+12 silly mapToRegistry   rawSpec: '',
+12 silly mapToRegistry   spec: 'latest',
+12 silly mapToRegistry   type: 'tag' }
+13 silly mapToRegistry uri https://registry.npmjs.org/bcrypt
+14 verbose request uri https://registry.npmjs.org/bcrypt
+15 verbose request no auth needed
+16 info attempt registry request try #1 at 21:10:05
+17 verbose request using bearer token for auth
+18 verbose request id 131fa51dc4bd3499
+19 verbose etag W/"592805c0-16f90"
+20 verbose lastModified Fri, 26 May 2017 10:38:56 GMT
+21 http request GET https://registry.npmjs.org/bcrypt
+22 http 304 https://registry.npmjs.org/bcrypt
+23 verbose headers { server: 'nginx/1.10.1',
+23 verbose headers   'last-modified': 'Fri, 26 May 2017 10:38:56 GMT',
+23 verbose headers   etag: '"592805c0-16f90"',
+23 verbose headers   'cache-control': 'max-age=300',
+23 verbose headers   'accept-ranges': 'bytes',
+23 verbose headers   date: 'Tue, 30 May 2017 13:10:10 GMT',
+23 verbose headers   via: '1.1 varnish',
+23 verbose headers   connection: 'keep-alive',
+23 verbose headers   'x-served-by': 'cache-nrt6123-NRT',
+23 verbose headers   'x-cache': 'MISS',
+23 verbose headers   'x-cache-hits': '0',
+23 verbose headers   'x-timer': 'S1496149810.816315,VS0,VE555',
+23 verbose headers   vary: 'Accept-Encoding' }
+24 silly get cb [ 304,
+24 silly get   { server: 'nginx/1.10.1',
+24 silly get     'last-modified': 'Fri, 26 May 2017 10:38:56 GMT',
+24 silly get     etag: '"592805c0-16f90"',
+24 silly get     'cache-control': 'max-age=300',
+24 silly get     'accept-ranges': 'bytes',
+24 silly get     date: 'Tue, 30 May 2017 13:10:10 GMT',
+24 silly get     via: '1.1 varnish',
+24 silly get     connection: 'keep-alive',
+24 silly get     'x-served-by': 'cache-nrt6123-NRT',
+24 silly get     'x-cache': 'MISS',
+24 silly get     'x-cache-hits': '0',
+24 silly get     'x-timer': 'S1496149810.816315,VS0,VE555',
+24 silly get     vary: 'Accept-Encoding' } ]
+25 verbose etag https://registry.npmjs.org/bcrypt from cache
+26 verbose get saving bcrypt to C:\Users\闫江南\AppData\Roaming\npm-cache\registry.npmjs.org\bcrypt\.cache.json
+27 verbose correctMkdir C:\Users\闫江南\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+28 silly install normalizeTree
+29 silly loadCurrentTree Finishing
+30 silly loadIdealTree Starting
+31 silly install loadIdealTree
+32 silly cloneCurrentTree Starting
+33 silly install cloneCurrentTreeToIdealTree
+34 silly cloneCurrentTree Finishing
+35 silly loadShrinkwrap Starting
+36 silly install loadShrinkwrap
+37 silly loadShrinkwrap Finishing
+38 silly loadAllDepsIntoIdealTree Starting
+39 silly install loadAllDepsIntoIdealTree
+40 silly resolveWithNewModule bcrypt@0.7.3 checking installable status
+41 silly cache add args [ 'bcrypt@0.7.3', null ]
+42 verbose cache add spec bcrypt@0.7.3
+43 silly cache add parsed spec Result {
+43 silly cache add   raw: 'bcrypt@0.7.3',
+43 silly cache add   scope: null,
+43 silly cache add   escapedName: 'bcrypt',
+43 silly cache add   name: 'bcrypt',
+43 silly cache add   rawSpec: '0.7.3',
+43 silly cache add   spec: '0.7.3',
+43 silly cache add   type: 'version' }
+44 silly addNamed bcrypt@0.7.3
+45 verbose addNamed "0.7.3" is a plain semver version for bcrypt
+46 silly mapToRegistry name bcrypt
+47 silly mapToRegistry using default registry
+48 silly mapToRegistry registry https://registry.npmjs.org/
+49 silly mapToRegistry data Result {
+49 silly mapToRegistry   raw: 'bcrypt',
+49 silly mapToRegistry   scope: null,
+49 silly mapToRegistry   escapedName: 'bcrypt',
+49 silly mapToRegistry   name: 'bcrypt',
+49 silly mapToRegistry   rawSpec: '',
+49 silly mapToRegistry   spec: 'latest',
+49 silly mapToRegistry   type: 'tag' }
+50 silly mapToRegistry uri https://registry.npmjs.org/bcrypt
+51 verbose addNameVersion registry:https://registry.npmjs.org/bcrypt not in flight; fetching
+52 verbose get https://registry.npmjs.org/bcrypt not expired, no request
+53 silly cache afterAdd bcrypt@0.7.3
+54 verbose afterAdd C:\Users\闫江南\AppData\Roaming\npm-cache\bcrypt\0.7.3\package\package.json not in flight; writing
+55 verbose correctMkdir C:\Users\闫江南\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+56 verbose afterAdd C:\Users\闫江南\AppData\Roaming\npm-cache\bcrypt\0.7.3\package\package.json written
+57 silly fetchNamedPackageData bindings
+58 silly mapToRegistry name bindings
+59 silly mapToRegistry using default registry
+60 silly mapToRegistry registry https://registry.npmjs.org/
+61 silly mapToRegistry data Result {
+61 silly mapToRegistry   raw: 'bindings',
+61 silly mapToRegistry   scope: null,
+61 silly mapToRegistry   escapedName: 'bindings',
+61 silly mapToRegistry   name: 'bindings',
+61 silly mapToRegistry   rawSpec: '',
+61 silly mapToRegistry   spec: 'latest',
+61 silly mapToRegistry   type: 'tag' }
+62 silly mapToRegistry uri https://registry.npmjs.org/bindings
+63 verbose request uri https://registry.npmjs.org/bindings
+64 verbose request no auth needed
+65 info attempt registry request try #1 at 21:10:07
+66 verbose request using bearer token for auth
+67 verbose etag W/"59234f99-46bf"
+68 verbose lastModified Mon, 22 May 2017 20:52:41 GMT
+69 http request GET https://registry.npmjs.org/bindings
+70 http 304 https://registry.npmjs.org/bindings
+71 verbose headers { server: 'nginx/1.10.1',
+71 verbose headers   'last-modified': 'Mon, 22 May 2017 20:52:41 GMT',
+71 verbose headers   etag: '"59234f99-46bf"',
+71 verbose headers   'cache-control': 'max-age=300',
+71 verbose headers   'accept-ranges': 'bytes',
+71 verbose headers   date: 'Tue, 30 May 2017 13:10:10 GMT',
+71 verbose headers   via: '1.1 varnish',
+71 verbose headers   connection: 'keep-alive',
+71 verbose headers   'x-served-by': 'cache-nrt6123-NRT',
+71 verbose headers   'x-cache': 'MISS',
+71 verbose headers   'x-cache-hits': '0',
+71 verbose headers   'x-timer': 'S1496149811.634587,VS0,VE130',
+71 verbose headers   vary: 'Accept-Encoding' }
+72 silly get cb [ 304,
+72 silly get   { server: 'nginx/1.10.1',
+72 silly get     'last-modified': 'Mon, 22 May 2017 20:52:41 GMT',
+72 silly get     etag: '"59234f99-46bf"',
+72 silly get     'cache-control': 'max-age=300',
+72 silly get     'accept-ranges': 'bytes',
+72 silly get     date: 'Tue, 30 May 2017 13:10:10 GMT',
+72 silly get     via: '1.1 varnish',
+72 silly get     connection: 'keep-alive',
+72 silly get     'x-served-by': 'cache-nrt6123-NRT',
+72 silly get     'x-cache': 'MISS',
+72 silly get     'x-cache-hits': '0',
+72 silly get     'x-timer': 'S1496149811.634587,VS0,VE130',
+72 silly get     vary: 'Accept-Encoding' } ]
+73 verbose etag https://registry.npmjs.org/bindings from cache
+74 verbose get saving bindings to C:\Users\闫江南\AppData\Roaming\npm-cache\registry.npmjs.org\bindings\.cache.json
+75 verbose correctMkdir C:\Users\闫江南\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+76 silly resolveWithNewModule bindings@1.0.0 checking installable status
+77 silly cache add args [ 'bindings@1.0.0', null ]
+78 verbose cache add spec bindings@1.0.0
+79 silly cache add parsed spec Result {
+79 silly cache add   raw: 'bindings@1.0.0',
+79 silly cache add   scope: null,
+79 silly cache add   escapedName: 'bindings',
+79 silly cache add   name: 'bindings',
+79 silly cache add   rawSpec: '1.0.0',
+79 silly cache add   spec: '1.0.0',
+79 silly cache add   type: 'version' }
+80 silly addNamed bindings@1.0.0
+81 verbose addNamed "1.0.0" is a plain semver version for bindings
+82 silly mapToRegistry name bindings
+83 silly mapToRegistry using default registry
+84 silly mapToRegistry registry https://registry.npmjs.org/
+85 silly mapToRegistry data Result {
+85 silly mapToRegistry   raw: 'bindings',
+85 silly mapToRegistry   scope: null,
+85 silly mapToRegistry   escapedName: 'bindings',
+85 silly mapToRegistry   name: 'bindings',
+85 silly mapToRegistry   rawSpec: '',
+85 silly mapToRegistry   spec: 'latest',
+85 silly mapToRegistry   type: 'tag' }
+86 silly mapToRegistry uri https://registry.npmjs.org/bindings
+87 verbose addNameVersion registry:https://registry.npmjs.org/bindings not in flight; fetching
+88 verbose get https://registry.npmjs.org/bindings not expired, no request
+89 silly cache afterAdd bindings@1.0.0
+90 verbose afterAdd C:\Users\闫江南\AppData\Roaming\npm-cache\bindings\1.0.0\package\package.json not in flight; writing
+91 verbose correctMkdir C:\Users\闫江南\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+92 verbose afterAdd C:\Users\闫江南\AppData\Roaming\npm-cache\bindings\1.0.0\package\package.json written
+93 silly fetchNamedPackageData hiredis
+94 silly mapToRegistry name hiredis
+95 silly mapToRegistry using default registry
+96 silly mapToRegistry registry https://registry.npmjs.org/
+97 silly mapToRegistry data Result {
+97 silly mapToRegistry   raw: 'hiredis',
+97 silly mapToRegistry   scope: null,
+97 silly mapToRegistry   escapedName: 'hiredis',
+97 silly mapToRegistry   name: 'hiredis',
+97 silly mapToRegistry   rawSpec: '',
+97 silly mapToRegistry   spec: 'latest',
+97 silly mapToRegistry   type: 'tag' }
+98 silly mapToRegistry uri https://registry.npmjs.org/hiredis
+99 verbose request uri https://registry.npmjs.org/hiredis
+100 verbose request no auth needed
+101 info attempt registry request try #1 at 21:10:07
+102 verbose request using bearer token for auth
+103 verbose etag W/"5922dab4-56ee"
+104 verbose lastModified Mon, 22 May 2017 12:33:56 GMT
+105 http request GET https://registry.npmjs.org/hiredis
+106 http 304 https://registry.npmjs.org/hiredis
+107 verbose headers { server: 'nginx/1.10.1',
+107 verbose headers   'last-modified': 'Mon, 22 May 2017 12:33:56 GMT',
+107 verbose headers   etag: '"5922dab4-56ee"',
+107 verbose headers   'cache-control': 'max-age=300',
+107 verbose headers   'accept-ranges': 'bytes',
+107 verbose headers   date: 'Tue, 30 May 2017 13:10:11 GMT',
+107 verbose headers   via: '1.1 varnish',
+107 verbose headers   connection: 'keep-alive',
+107 verbose headers   'x-served-by': 'cache-nrt6123-NRT',
+107 verbose headers   'x-cache': 'MISS',
+107 verbose headers   'x-cache-hits': '0',
+107 verbose headers   'x-timer': 'S1496149811.968037,VS0,VE130',
+107 verbose headers   vary: 'Accept-Encoding' }
+108 silly get cb [ 304,
+108 silly get   { server: 'nginx/1.10.1',
+108 silly get     'last-modified': 'Mon, 22 May 2017 12:33:56 GMT',
+108 silly get     etag: '"5922dab4-56ee"',
+108 silly get     'cache-control': 'max-age=300',
+108 silly get     'accept-ranges': 'bytes',
+108 silly get     date: 'Tue, 30 May 2017 13:10:11 GMT',
+108 silly get     via: '1.1 varnish',
+108 silly get     connection: 'keep-alive',
+108 silly get     'x-served-by': 'cache-nrt6123-NRT',
+108 silly get     'x-cache': 'MISS',
+108 silly get     'x-cache-hits': '0',
+108 silly get     'x-timer': 'S1496149811.968037,VS0,VE130',
+108 silly get     vary: 'Accept-Encoding' } ]
+109 verbose etag https://registry.npmjs.org/hiredis from cache
+110 verbose get saving hiredis to C:\Users\闫江南\AppData\Roaming\npm-cache\registry.npmjs.org\hiredis\.cache.json
+111 verbose correctMkdir C:\Users\闫江南\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+112 silly resolveWithNewModule hiredis@0.5.0 checking installable status
+113 silly cache add args [ 'hiredis@*', null ]
+114 verbose cache add spec hiredis@*
+115 silly cache add parsed spec Result {
+115 silly cache add   raw: 'hiredis@*',
+115 silly cache add   scope: null,
+115 silly cache add   escapedName: 'hiredis',
+115 silly cache add   name: 'hiredis',
+115 silly cache add   rawSpec: '*',
+115 silly cache add   spec: '*',
+115 silly cache add   type: 'range' }
+116 silly addNamed hiredis@*
+117 verbose addNamed "*" is a valid semver range for hiredis
+118 silly addNameRange { name: 'hiredis', range: '*', hasData: false }
+119 silly mapToRegistry name hiredis
+120 silly mapToRegistry using default registry
+121 silly mapToRegistry registry https://registry.npmjs.org/
+122 silly mapToRegistry data Result {
+122 silly mapToRegistry   raw: 'hiredis',
+122 silly mapToRegistry   scope: null,
+122 silly mapToRegistry   escapedName: 'hiredis',
+122 silly mapToRegistry   name: 'hiredis',
+122 silly mapToRegistry   rawSpec: '',
+122 silly mapToRegistry   spec: 'latest',
+122 silly mapToRegistry   type: 'tag' }
+123 silly mapToRegistry uri https://registry.npmjs.org/hiredis
+124 verbose addNameRange registry:https://registry.npmjs.org/hiredis not in flight; fetching
+125 verbose get https://registry.npmjs.org/hiredis not expired, no request
+126 silly addNameRange number 2 { name: 'hiredis', range: '*', hasData: true }
+127 silly addNameRange versions [ 'hiredis',
+127 silly addNameRange   [ '0.1.0',
+127 silly addNameRange     '0.1.1',
+127 silly addNameRange     '0.1.2',
+127 silly addNameRange     '0.1.3',
+127 silly addNameRange     '0.1.4',
+127 silly addNameRange     '0.1.5',
+127 silly addNameRange     '0.1.6',
+127 silly addNameRange     '0.1.8',
+127 silly addNameRange     '0.1.9',
+127 silly addNameRange     '0.1.10',
+127 silly addNameRange     '0.1.12',
+127 silly addNameRange     '0.1.13',
+127 silly addNameRange     '0.1.14',
+127 silly addNameRange     '0.1.15',
+127 silly addNameRange     '0.1.16',
+127 silly addNameRange     '0.1.17',
+127 silly addNameRange     '0.2.0',
+127 silly addNameRange     '0.3.0',
+127 silly addNameRange     '0.4.0',
+127 silly addNameRange     '0.4.1',
+127 silly addNameRange     '0.5.0' ] ]
+128 silly addNamed hiredis@0.5.0
+129 verbose addNamed "0.5.0" is a plain semver version for hiredis
+130 silly cache afterAdd hiredis@0.5.0
+131 verbose afterAdd C:\Users\闫江南\AppData\Roaming\npm-cache\hiredis\0.5.0\package\package.json not in flight; writing
+132 verbose correctMkdir C:\Users\闫江南\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+133 verbose afterAdd C:\Users\闫江南\AppData\Roaming\npm-cache\hiredis\0.5.0\package\package.json written
+134 silly fetchNamedPackageData bindings
+135 silly mapToRegistry name bindings
+136 silly mapToRegistry using default registry
+137 silly mapToRegistry registry https://registry.npmjs.org/
+138 silly mapToRegistry data Result {
+138 silly mapToRegistry   raw: 'bindings',
+138 silly mapToRegistry   scope: null,
+138 silly mapToRegistry   escapedName: 'bindings',
+138 silly mapToRegistry   name: 'bindings',
+138 silly mapToRegistry   rawSpec: '',
+138 silly mapToRegistry   spec: 'latest',
+138 silly mapToRegistry   type: 'tag' }
+139 silly mapToRegistry uri https://registry.npmjs.org/bindings
+140 silly resolveWithNewModule bindings@1.2.1 checking installable status
+141 silly cache add args [ 'bindings@^1.2.1', null ]
+142 verbose cache add spec bindings@^1.2.1
+143 silly fetchNamedPackageData nan
+144 silly mapToRegistry name nan
+145 silly mapToRegistry using default registry
+146 silly mapToRegistry registry https://registry.npmjs.org/
+147 silly mapToRegistry data Result {
+147 silly mapToRegistry   raw: 'nan',
+147 silly mapToRegistry   scope: null,
+147 silly mapToRegistry   escapedName: 'nan',
+147 silly mapToRegistry   name: 'nan',
+147 silly mapToRegistry   rawSpec: '',
+147 silly mapToRegistry   spec: 'latest',
+147 silly mapToRegistry   type: 'tag' }
+148 silly mapToRegistry uri https://registry.npmjs.org/nan
+149 silly cache add parsed spec Result {
+149 silly cache add   raw: 'bindings@^1.2.1',
+149 silly cache add   scope: null,
+149 silly cache add   escapedName: 'bindings',
+149 silly cache add   name: 'bindings',
+149 silly cache add   rawSpec: '^1.2.1',
+149 silly cache add   spec: '>=1.2.1 <2.0.0',
+149 silly cache add   type: 'range' }
+150 silly addNamed bindings@>=1.2.1 <2.0.0
+151 verbose addNamed ">=1.2.1 <2.0.0" is a valid semver range for bindings
+152 silly addNameRange { name: 'bindings', range: '>=1.2.1 <2.0.0', hasData: false }
+153 silly mapToRegistry name bindings
+154 silly mapToRegistry using default registry
+155 silly mapToRegistry registry https://registry.npmjs.org/
+156 silly mapToRegistry data Result {
+156 silly mapToRegistry   raw: 'bindings',
+156 silly mapToRegistry   scope: null,
+156 silly mapToRegistry   escapedName: 'bindings',
+156 silly mapToRegistry   name: 'bindings',
+156 silly mapToRegistry   rawSpec: '',
+156 silly mapToRegistry   spec: 'latest',
+156 silly mapToRegistry   type: 'tag' }
+157 silly mapToRegistry uri https://registry.npmjs.org/bindings
+158 verbose addNameRange registry:https://registry.npmjs.org/bindings not in flight; fetching
+159 verbose get https://registry.npmjs.org/bindings not expired, no request
+160 silly addNameRange number 2 { name: 'bindings', range: '>=1.2.1 <2.0.0', hasData: true }
+161 silly addNameRange versions [ 'bindings',
+161 silly addNameRange   [ '0.0.1',
+161 silly addNameRange     '0.1.0',
+161 silly addNameRange     '0.1.1',
+161 silly addNameRange     '0.2.0',
+161 silly addNameRange     '0.2.1',
+161 silly addNameRange     '0.2.2',
+161 silly addNameRange     '0.2.3',
+161 silly addNameRange     '0.2.4',
+161 silly addNameRange     '0.3.0',
+161 silly addNameRange     '0.4.0',
+161 silly addNameRange     '1.0.0',
+161 silly addNameRange     '1.1.0',
+161 silly addNameRange     '1.1.1',
+161 silly addNameRange     '1.2.0',
+161 silly addNameRange     '1.2.1' ] ]
+162 silly addNamed bindings@1.2.1
+163 verbose addNamed "1.2.1" is a plain semver version for bindings
+164 verbose request uri https://registry.npmjs.org/nan
+165 verbose request no auth needed
+166 info attempt registry request try #1 at 21:10:07
+167 verbose request using bearer token for auth
+168 verbose etag W/"591906db-1f9db"
+169 verbose lastModified Mon, 15 May 2017 01:39:39 GMT
+170 http request GET https://registry.npmjs.org/nan
+171 silly cache afterAdd bindings@1.2.1
+172 verbose afterAdd C:\Users\闫江南\AppData\Roaming\npm-cache\bindings\1.2.1\package\package.json not in flight; writing
+173 verbose correctMkdir C:\Users\闫江南\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+174 verbose afterAdd C:\Users\闫江南\AppData\Roaming\npm-cache\bindings\1.2.1\package\package.json written
+175 http 304 https://registry.npmjs.org/nan
+176 verbose headers { server: 'nginx/1.10.1',
+176 verbose headers   'last-modified': 'Mon, 15 May 2017 01:39:39 GMT',
+176 verbose headers   etag: '"591906db-1f9db"',
+176 verbose headers   'cache-control': 'max-age=300',
+176 verbose headers   'accept-ranges': 'bytes',
+176 verbose headers   date: 'Tue, 30 May 2017 13:10:11 GMT',
+176 verbose headers   via: '1.1 varnish',
+176 verbose headers   connection: 'keep-alive',
+176 verbose headers   'x-served-by': 'cache-nrt6123-NRT',
+176 verbose headers   'x-cache': 'MISS',
+176 verbose headers   'x-cache-hits': '0',
+176 verbose headers   'x-timer': 'S1496149811.281602,VS0,VE119',
+176 verbose headers   vary: 'Accept-Encoding' }
+177 silly get cb [ 304,
+177 silly get   { server: 'nginx/1.10.1',
+177 silly get     'last-modified': 'Mon, 15 May 2017 01:39:39 GMT',
+177 silly get     etag: '"591906db-1f9db"',
+177 silly get     'cache-control': 'max-age=300',
+177 silly get     'accept-ranges': 'bytes',
+177 silly get     date: 'Tue, 30 May 2017 13:10:11 GMT',
+177 silly get     via: '1.1 varnish',
+177 silly get     connection: 'keep-alive',
+177 silly get     'x-served-by': 'cache-nrt6123-NRT',
+177 silly get     'x-cache': 'MISS',
+177 silly get     'x-cache-hits': '0',
+177 silly get     'x-timer': 'S1496149811.281602,VS0,VE119',
+177 silly get     vary: 'Accept-Encoding' } ]
+178 verbose etag https://registry.npmjs.org/nan from cache
+179 verbose get saving nan to C:\Users\闫江南\AppData\Roaming\npm-cache\registry.npmjs.org\nan\.cache.json
+180 verbose correctMkdir C:\Users\闫江南\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+181 silly resolveWithNewModule nan@2.6.2 checking installable status
+182 silly cache add args [ 'nan@^2.3.4', null ]
+183 verbose cache add spec nan@^2.3.4
+184 silly cache add parsed spec Result {
+184 silly cache add   raw: 'nan@^2.3.4',
+184 silly cache add   scope: null,
+184 silly cache add   escapedName: 'nan',
+184 silly cache add   name: 'nan',
+184 silly cache add   rawSpec: '^2.3.4',
+184 silly cache add   spec: '>=2.3.4 <3.0.0',
+184 silly cache add   type: 'range' }
+185 silly addNamed nan@>=2.3.4 <3.0.0
+186 verbose addNamed ">=2.3.4 <3.0.0" is a valid semver range for nan
+187 silly addNameRange { name: 'nan', range: '>=2.3.4 <3.0.0', hasData: false }
+188 silly mapToRegistry name nan
+189 silly mapToRegistry using default registry
+190 silly mapToRegistry registry https://registry.npmjs.org/
+191 silly mapToRegistry data Result {
+191 silly mapToRegistry   raw: 'nan',
+191 silly mapToRegistry   scope: null,
+191 silly mapToRegistry   escapedName: 'nan',
+191 silly mapToRegistry   name: 'nan',
+191 silly mapToRegistry   rawSpec: '',
+191 silly mapToRegistry   spec: 'latest',
+191 silly mapToRegistry   type: 'tag' }
+192 silly mapToRegistry uri https://registry.npmjs.org/nan
+193 verbose addNameRange registry:https://registry.npmjs.org/nan not in flight; fetching
+194 verbose get https://registry.npmjs.org/nan not expired, no request
+195 silly addNameRange number 2 { name: 'nan', range: '>=2.3.4 <3.0.0', hasData: true }
+196 silly addNameRange versions [ 'nan',
+196 silly addNameRange   [ '0.3.0-wip',
+196 silly addNameRange     '0.3.0-wip2',
+196 silly addNameRange     '0.3.0',
+196 silly addNameRange     '0.3.1',
+196 silly addNameRange     '0.3.2',
+196 silly addNameRange     '0.4.0',
+196 silly addNameRange     '0.4.1',
+196 silly addNameRange     '0.4.2',
+196 silly addNameRange     '0.4.3',
+196 silly addNameRange     '0.4.4',
+196 silly addNameRange     '0.5.0',
+196 silly addNameRange     '0.5.1',
+196 silly addNameRange     '0.5.2',
+196 silly addNameRange     '0.6.0',
+196 silly addNameRange     '0.7.0',
+196 silly addNameRange     '0.7.1',
+196 silly addNameRange     '0.8.0',
+196 silly addNameRange     '1.0.0',
+196 silly addNameRange     '1.1.0',
+196 silly addNameRange     '1.1.1',
+196 silly addNameRange     '1.1.2',
+196 silly addNameRange     '1.2.0',
+196 silly addNameRange     '1.3.0',
+196 silly addNameRange     '1.4.0',
+196 silly addNameRange     '1.4.1',
+196 silly addNameRange     '1.5.0',
+196 silly addNameRange     '1.4.2',
+196 silly addNameRange     '1.4.3',
+196 silly addNameRange     '1.5.1',
+196 silly addNameRange     '1.5.2',
+196 silly addNameRange     '1.6.0',
+196 silly addNameRange     '1.5.3',
+196 silly addNameRange     '1.6.1',
+196 silly addNameRange     '1.6.2',
+196 silly addNameRange     '1.7.0',
+196 silly addNameRange     '1.8.0',
+196 silly addNameRange     '1.8.1',
+196 silly addNameRange     '1.8.2',
+196 silly addNameRange     '1.8.3',
+196 silly addNameRange     '1.8.4',
+196 silly addNameRange     '1.9.0',
+196 silly addNameRange     '2.0.0',
+196 silly addNameRange     '2.0.1',
+196 silly addNameRange     '2.0.2',
+196 silly addNameRange     '2.0.3',
+196 silly addNameRange     '2.0.4',
+196 silly addNameRange     '2.0.5',
+196 silly addNameRange     '2.0.6',
+196 silly addNameRange     '2.0.7',
+196 silly addNameRange     '2.0.8',
+196 silly addNameRange     '2.0.9',
+196 silly addNameRange     '2.1.0',
+196 silly addNameRange     '2.2.0',
+196 silly addNameRange     '2.2.1',
+196 silly addNameRange     '2.3.0',
+196 silly addNameRange     '2.3.1',
+196 silly addNameRange     '2.3.2',
+196 silly addNameRange     '2.3.3',
+196 silly addNameRange     '2.3.4',
+196 silly addNameRange     '2.3.5',
+196 silly addNameRange     '2.4.0',
+196 silly addNameRange     '2.5.0',
+196 silly addNameRange     '2.5.1',
+196 silly addNameRange     '2.6.0',
+196 silly addNameRange     '2.6.1',
+196 silly addNameRange     '2.6.2' ] ]
+197 silly addNamed nan@2.6.2
+198 verbose addNamed "2.6.2" is a plain semver version for nan
+199 silly cache afterAdd nan@2.6.2
+200 verbose afterAdd C:\Users\闫江南\AppData\Roaming\npm-cache\nan\2.6.2\package\package.json not in flight; writing
+201 verbose correctMkdir C:\Users\闫江南\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+202 verbose afterAdd C:\Users\闫江南\AppData\Roaming\npm-cache\nan\2.6.2\package\package.json written
+203 silly loadAllDepsIntoIdealTree Finishing
+204 silly loadIdealTree Finishing
+205 silly currentTree shoutbox@0.0.0
+205 silly currentTree +-- accepts@1.3.3
+205 silly currentTree +-- array-flatten@1.1.1
+205 silly currentTree +-- basic-auth@1.1.0
+205 silly currentTree +-- body-parser@1.17.2
+205 silly currentTree | `-- debug@2.6.7
+205 silly currentTree +-- bytes@2.4.0
+205 silly currentTree +-- content-disposition@0.5.2
+205 silly currentTree +-- content-type@1.0.2
+205 silly currentTree +-- cookie-parser@1.4.3
+205 silly currentTree +-- cookie-signature@1.0.6
+205 silly currentTree +-- cookie@0.3.1
+205 silly currentTree +-- debug@2.6.8
+205 silly currentTree +-- depd@1.1.0
+205 silly currentTree +-- destroy@1.0.4
+205 silly currentTree +-- ee-first@1.1.1
+205 silly currentTree +-- ejs@2.5.6
+205 silly currentTree +-- encodeurl@1.0.1
+205 silly currentTree +-- escape-html@1.0.3
+205 silly currentTree +-- etag@1.8.0
+205 silly currentTree +-- express@4.15.3
+205 silly currentTree | `-- debug@2.6.7
+205 silly currentTree +-- finalhandler@1.0.3
+205 silly currentTree | `-- debug@2.6.7
+205 silly currentTree +-- forwarded@0.1.0
+205 silly currentTree +-- fresh@0.5.0
+205 silly currentTree +-- http-errors@1.6.1
+205 silly currentTree +-- iconv-lite@0.4.15
+205 silly currentTree +-- inherits@2.0.3
+205 silly currentTree +-- ipaddr.js@1.3.0
+205 silly currentTree +-- media-typer@0.3.0
+205 silly currentTree +-- merge-descriptors@1.0.1
+205 silly currentTree +-- methods@1.1.2
+205 silly currentTree +-- mime-db@1.27.0
+205 silly currentTree +-- mime-types@2.1.15
+205 silly currentTree +-- mime@1.3.4
+205 silly currentTree +-- morgan@1.8.2
+205 silly currentTree +-- ms@2.0.0
+205 silly currentTree +-- negotiator@0.6.1
+205 silly currentTree +-- on-finished@2.3.0
+205 silly currentTree +-- on-headers@1.0.1
+205 silly currentTree +-- parseurl@1.3.1
+205 silly currentTree +-- path-to-regexp@0.1.7
+205 silly currentTree +-- proxy-addr@1.1.4
+205 silly currentTree +-- qs@6.4.0
+205 silly currentTree +-- range-parser@1.2.0
+205 silly currentTree +-- raw-body@2.2.0
+205 silly currentTree +-- redis@0.7.2
+205 silly currentTree +-- safe-buffer@5.0.1
+205 silly currentTree +-- send@0.15.3
+205 silly currentTree | `-- debug@2.6.7
+205 silly currentTree +-- serve-favicon@2.4.3
+205 silly currentTree +-- serve-static@1.12.3
+205 silly currentTree +-- setprototypeof@1.0.3
+205 silly currentTree +-- statuses@1.3.1
+205 silly currentTree +-- type-is@1.6.15
+205 silly currentTree +-- unpipe@1.0.0
+205 silly currentTree +-- utils-merge@1.0.0
+205 silly currentTree `-- vary@1.1.1
+206 silly idealTree shoutbox@0.0.0
+206 silly idealTree +-- accepts@1.3.3
+206 silly idealTree +-- array-flatten@1.1.1
+206 silly idealTree +-- basic-auth@1.1.0
+206 silly idealTree +-- bcrypt@0.7.3
+206 silly idealTree +-- bindings@1.0.0
+206 silly idealTree +-- body-parser@1.17.2
+206 silly idealTree | `-- debug@2.6.7
+206 silly idealTree +-- bytes@2.4.0
+206 silly idealTree +-- content-disposition@0.5.2
+206 silly idealTree +-- content-type@1.0.2
+206 silly idealTree +-- cookie-parser@1.4.3
+206 silly idealTree +-- cookie-signature@1.0.6
+206 silly idealTree +-- cookie@0.3.1
+206 silly idealTree +-- debug@2.6.8
+206 silly idealTree +-- depd@1.1.0
+206 silly idealTree +-- destroy@1.0.4
+206 silly idealTree +-- ee-first@1.1.1
+206 silly idealTree +-- ejs@2.5.6
+206 silly idealTree +-- encodeurl@1.0.1
+206 silly idealTree +-- escape-html@1.0.3
+206 silly idealTree +-- etag@1.8.0
+206 silly idealTree +-- express@4.15.3
+206 silly idealTree | `-- debug@2.6.7
+206 silly idealTree +-- finalhandler@1.0.3
+206 silly idealTree | `-- debug@2.6.7
+206 silly idealTree +-- forwarded@0.1.0
+206 silly idealTree +-- fresh@0.5.0
+206 silly idealTree +-- hiredis@0.5.0
+206 silly idealTree | `-- bindings@1.2.1
+206 silly idealTree +-- http-errors@1.6.1
+206 silly idealTree +-- iconv-lite@0.4.15
+206 silly idealTree +-- inherits@2.0.3
+206 silly idealTree +-- ipaddr.js@1.3.0
+206 silly idealTree +-- media-typer@0.3.0
+206 silly idealTree +-- merge-descriptors@1.0.1
+206 silly idealTree +-- methods@1.1.2
+206 silly idealTree +-- mime-db@1.27.0
+206 silly idealTree +-- mime-types@2.1.15
+206 silly idealTree +-- mime@1.3.4
+206 silly idealTree +-- morgan@1.8.2
+206 silly idealTree +-- ms@2.0.0
+206 silly idealTree +-- nan@2.6.2
+206 silly idealTree +-- negotiator@0.6.1
+206 silly idealTree +-- on-finished@2.3.0
+206 silly idealTree +-- on-headers@1.0.1
+206 silly idealTree +-- parseurl@1.3.1
+206 silly idealTree +-- path-to-regexp@0.1.7
+206 silly idealTree +-- proxy-addr@1.1.4
+206 silly idealTree +-- qs@6.4.0
+206 silly idealTree +-- range-parser@1.2.0
+206 silly idealTree +-- raw-body@2.2.0
+206 silly idealTree +-- redis@0.7.2
+206 silly idealTree +-- safe-buffer@5.0.1
+206 silly idealTree +-- send@0.15.3
+206 silly idealTree | `-- debug@2.6.7
+206 silly idealTree +-- serve-favicon@2.4.3
+206 silly idealTree +-- serve-static@1.12.3
+206 silly idealTree +-- setprototypeof@1.0.3
+206 silly idealTree +-- statuses@1.3.1
+206 silly idealTree +-- type-is@1.6.15
+206 silly idealTree +-- unpipe@1.0.0
+206 silly idealTree +-- utils-merge@1.0.0
+206 silly idealTree `-- vary@1.1.1
+207 silly generateActionsToTake Starting
+208 silly install generateActionsToTake
+209 silly generateActionsToTake Finishing
+210 silly diffTrees action count 5
+211 silly diffTrees add bindings@1.2.1
+212 silly diffTrees add nan@2.6.2
+213 silly diffTrees add hiredis@0.5.0
+214 silly diffTrees add bindings@1.0.0
+215 silly diffTrees add bcrypt@0.7.3
+216 silly decomposeActions action count 40
+217 silly decomposeActions fetch bindings@1.2.1
+218 silly decomposeActions extract bindings@1.2.1
+219 silly decomposeActions test bindings@1.2.1
+220 silly decomposeActions preinstall bindings@1.2.1
+221 silly decomposeActions build bindings@1.2.1
+222 silly decomposeActions install bindings@1.2.1
+223 silly decomposeActions postinstall bindings@1.2.1
+224 silly decomposeActions finalize bindings@1.2.1
+225 silly decomposeActions fetch nan@2.6.2
+226 silly decomposeActions extract nan@2.6.2
+227 silly decomposeActions test nan@2.6.2
+228 silly decomposeActions preinstall nan@2.6.2
+229 silly decomposeActions build nan@2.6.2
+230 silly decomposeActions install nan@2.6.2
+231 silly decomposeActions postinstall nan@2.6.2
+232 silly decomposeActions finalize nan@2.6.2
+233 silly decomposeActions fetch hiredis@0.5.0
+234 silly decomposeActions extract hiredis@0.5.0
+235 silly decomposeActions test hiredis@0.5.0
+236 silly decomposeActions preinstall hiredis@0.5.0
+237 silly decomposeActions build hiredis@0.5.0
+238 silly decomposeActions install hiredis@0.5.0
+239 silly decomposeActions postinstall hiredis@0.5.0
+240 silly decomposeActions finalize hiredis@0.5.0
+241 silly decomposeActions fetch bindings@1.0.0
+242 silly decomposeActions extract bindings@1.0.0
+243 silly decomposeActions test bindings@1.0.0
+244 silly decomposeActions preinstall bindings@1.0.0
+245 silly decomposeActions build bindings@1.0.0
+246 silly decomposeActions install bindings@1.0.0
+247 silly decomposeActions postinstall bindings@1.0.0
+248 silly decomposeActions finalize bindings@1.0.0
+249 silly decomposeActions fetch bcrypt@0.7.3
+250 silly decomposeActions extract bcrypt@0.7.3
+251 silly decomposeActions test bcrypt@0.7.3
+252 silly decomposeActions preinstall bcrypt@0.7.3
+253 silly decomposeActions build bcrypt@0.7.3
+254 silly decomposeActions install bcrypt@0.7.3
+255 silly decomposeActions postinstall bcrypt@0.7.3
+256 silly decomposeActions finalize bcrypt@0.7.3
+257 silly runTopLevelLifecycles Starting
+258 silly executeActions Starting
+259 silly install executeActions
+260 silly doSerial global-install 0
+261 silly doParallel fetch 5
+262 verbose correctMkdir C:\Users\闫江南\AppData\Roaming\npm-cache\_locks correctMkdir not in flight; initializing
+263 verbose lock using C:\Users\闫江南\AppData\Roaming\npm-cache\_locks\staging-6cbd533b1c352e7e.lock for G:\node\node_practice\develpo\shoutbox\node_modules\.staging
+264 silly doParallel extract 5
+265 silly extract bindings@1.2.1
+266 silly extract nan@2.6.2
+267 silly extract hiredis@0.5.0
+268 silly extract bindings@1.0.0
+269 silly extract bcrypt@0.7.3
+270 verbose unbuild node_modules\.staging\hiredis-7257ea18
+271 verbose unbuild node_modules\.staging\bindings-53851012
+272 verbose unbuild node_modules\.staging\nan-0a7fafc7
+273 verbose unbuild node_modules\.staging\bindings-e45c3e0d
+274 verbose unbuild node_modules\.staging\bcrypt-95b334f5
+275 silly gentlyRm G:\node\node_practice\develpo\shoutbox\node_modules\.staging\hiredis-7257ea18 is being purged from base G:\node\node_practice\develpo\shoutbox
+276 verbose gentlyRm don't care about contents; nuking G:\node\node_practice\develpo\shoutbox\node_modules\.staging\hiredis-7257ea18
+277 silly gentlyRm G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bindings-53851012 is being purged from base G:\node\node_practice\develpo\shoutbox
+278 verbose gentlyRm don't care about contents; nuking G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bindings-53851012
+279 silly gentlyRm G:\node\node_practice\develpo\shoutbox\node_modules\.staging\nan-0a7fafc7 is being purged from base G:\node\node_practice\develpo\shoutbox
+280 verbose gentlyRm don't care about contents; nuking G:\node\node_practice\develpo\shoutbox\node_modules\.staging\nan-0a7fafc7
+281 silly gentlyRm G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bindings-e45c3e0d is being purged from base G:\node\node_practice\develpo\shoutbox
+282 verbose gentlyRm don't care about contents; nuking G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bindings-e45c3e0d
+283 silly gentlyRm G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bcrypt-95b334f5 is being purged from base G:\node\node_practice\develpo\shoutbox
+284 verbose gentlyRm don't care about contents; nuking G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bcrypt-95b334f5
+285 verbose tar unpack C:\Users\闫江南\AppData\Roaming\npm-cache\hiredis\0.5.0\package.tgz
+286 verbose tar unpacking to G:\node\node_practice\develpo\shoutbox\node_modules\.staging\hiredis-7257ea18
+287 silly gentlyRm G:\node\node_practice\develpo\shoutbox\node_modules\.staging\hiredis-7257ea18 is being purged
+288 verbose gentlyRm don't care about contents; nuking G:\node\node_practice\develpo\shoutbox\node_modules\.staging\hiredis-7257ea18
+289 verbose tar unpack C:\Users\闫江南\AppData\Roaming\npm-cache\bindings\1.2.1\package.tgz
+290 verbose tar unpacking to G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bindings-53851012
+291 silly gentlyRm G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bindings-53851012 is being purged
+292 verbose gentlyRm don't care about contents; nuking G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bindings-53851012
+293 verbose tar unpack C:\Users\闫江南\AppData\Roaming\npm-cache\nan\2.6.2\package.tgz
+294 verbose tar unpacking to G:\node\node_practice\develpo\shoutbox\node_modules\.staging\nan-0a7fafc7
+295 silly gentlyRm G:\node\node_practice\develpo\shoutbox\node_modules\.staging\nan-0a7fafc7 is being purged
+296 verbose gentlyRm don't care about contents; nuking G:\node\node_practice\develpo\shoutbox\node_modules\.staging\nan-0a7fafc7
+297 verbose tar unpack C:\Users\闫江南\AppData\Roaming\npm-cache\bindings\1.0.0\package.tgz
+298 verbose tar unpacking to G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bindings-e45c3e0d
+299 silly gentlyRm G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bindings-e45c3e0d is being purged
+300 verbose gentlyRm don't care about contents; nuking G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bindings-e45c3e0d
+301 verbose tar unpack C:\Users\闫江南\AppData\Roaming\npm-cache\bcrypt\0.7.3\package.tgz
+302 verbose tar unpacking to G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bcrypt-95b334f5
+303 silly gentlyRm G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bcrypt-95b334f5 is being purged
+304 verbose gentlyRm don't care about contents; nuking G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bcrypt-95b334f5
+305 silly gunzTarPerm modes [ '777', '666' ]
+306 silly gunzTarPerm modes [ '777', '666' ]
+307 silly gunzTarPerm modes [ '777', '666' ]
+308 silly gunzTarPerm modes [ '777', '666' ]
+309 silly gunzTarPerm modes [ '777', '666' ]
+310 silly gunzTarPerm extractEntry package.json
+311 silly gunzTarPerm modified mode [ 'package.json', 420, 438 ]
+312 silly gunzTarPerm extractEntry package.json
+313 silly gunzTarPerm modified mode [ 'package.json', 420, 438 ]
+314 silly gunzTarPerm extractEntry package.json
+315 silly gunzTarPerm modified mode [ 'package.json', 436, 438 ]
+316 silly gunzTarPerm extractEntry package.json
+317 silly gunzTarPerm modified mode [ 'package.json', 420, 438 ]
+318 silly gunzTarPerm extractEntry package.json
+319 silly gunzTarPerm modified mode [ 'package.json', 420, 438 ]
+320 silly gunzTarPerm extractEntry .npmignore
+321 silly gunzTarPerm modified mode [ '.npmignore', 420, 438 ]
+322 silly gunzTarPerm extractEntry README.md
+323 silly gunzTarPerm modified mode [ 'README.md', 420, 438 ]
+324 silly gunzTarPerm extractEntry README.md
+325 silly gunzTarPerm modified mode [ 'README.md', 420, 438 ]
+326 silly gunzTarPerm extractEntry bindings.js
+327 silly gunzTarPerm modified mode [ 'bindings.js', 420, 438 ]
+328 silly gunzTarPerm extractEntry README.md
+329 silly gunzTarPerm modified mode [ 'README.md', 436, 438 ]
+330 silly gunzTarPerm extractEntry README.md
+331 silly gunzTarPerm modified mode [ 'README.md', 420, 438 ]
+332 silly gunzTarPerm extractEntry bindings.js
+333 silly gunzTarPerm modified mode [ 'bindings.js', 420, 438 ]
+334 silly gunzTarPerm extractEntry include_dirs.js
+335 silly gunzTarPerm modified mode [ 'include_dirs.js', 436, 438 ]
+336 silly gunzTarPerm extractEntry .npmignore
+337 silly gunzTarPerm modified mode [ '.npmignore', 420, 438 ]
+338 silly gunzTarPerm extractEntry README.md
+339 silly gunzTarPerm modified mode [ 'README.md', 420, 438 ]
+340 silly gunzTarPerm extractEntry bench.js
+341 silly gunzTarPerm modified mode [ 'bench.js', 420, 438 ]
+342 silly gunzTarPerm extractEntry hiredis.js
+343 silly gunzTarPerm modified mode [ 'hiredis.js', 420, 438 ]
+344 silly gunzTarPerm extractEntry nan_converters_43_inl.h
+345 silly gunzTarPerm modified mode [ 'nan_converters_43_inl.h', 436, 438 ]
+346 silly gunzTarPerm extractEntry LICENSE.md
+347 silly gunzTarPerm modified mode [ 'LICENSE.md', 436, 438 ]
+348 silly gunzTarPerm extractEntry doc/new.md
+349 silly gunzTarPerm modified mode [ 'doc/new.md', 436, 438 ]
+350 silly gunzTarPerm extractEntry LICENSE
+351 silly gunzTarPerm modified mode [ 'LICENSE', 420, 438 ]
+352 silly gunzTarPerm extractEntry bcrypt.js
+353 silly gunzTarPerm modified mode [ 'bcrypt.js', 420, 438 ]
+354 silly gunzTarPerm extractEntry doc/asyncworker.md
+355 silly gunzTarPerm modified mode [ 'doc/asyncworker.md', 436, 438 ]
+356 silly gunzTarPerm extractEntry COPYING
+357 silly gunzTarPerm modified mode [ 'COPYING', 420, 438 ]
+358 silly gunzTarPerm extractEntry Makefile
+359 silly gunzTarPerm modified mode [ 'Makefile', 420, 438 ]
+360 silly gunzTarPerm extractEntry .travis.yml
+361 silly gunzTarPerm modified mode [ '.travis.yml', 420, 438 ]
+362 silly gunzTarPerm extractEntry doc/callback.md
+363 silly gunzTarPerm modified mode [ 'doc/callback.md', 436, 438 ]
+364 silly gunzTarPerm extractEntry doc/converters.md
+365 silly gunzTarPerm modified mode [ 'doc/converters.md', 436, 438 ]
+366 silly gunzTarPerm extractEntry src/node_blf.h
+367 silly gunzTarPerm modified mode [ 'src/node_blf.h', 420, 438 ]
+368 silly gunzTarPerm extractEntry src/bcrypt.cc
+369 silly gunzTarPerm modified mode [ 'src/bcrypt.cc', 420, 438 ]
+370 silly gunzTarPerm extractEntry appveyor.yml
+371 silly gunzTarPerm modified mode [ 'appveyor.yml', 420, 438 ]
+372 silly gunzTarPerm extractEntry .gitmodules
+373 silly gunzTarPerm modified mode [ '.gitmodules', 420, 438 ]
+374 silly gunzTarPerm extractEntry doc/errors.md
+375 silly gunzTarPerm modified mode [ 'doc/errors.md', 436, 438 ]
+376 silly gunzTarPerm extractEntry doc/json.md
+377 silly gunzTarPerm modified mode [ 'doc/json.md', 436, 438 ]
+378 silly gunzTarPerm extractEntry binding.gyp
+379 silly gunzTarPerm modified mode [ 'binding.gyp', 420, 438 ]
+380 silly gunzTarPerm extractEntry doc/maybe_types.md
+381 silly gunzTarPerm modified mode [ 'doc/maybe_types.md', 436, 438 ]
+382 silly gunzTarPerm extractEntry doc/methods.md
+383 silly gunzTarPerm modified mode [ 'doc/methods.md', 436, 438 ]
+384 silly gunzTarPerm extractEntry src/bcrypt_node.cc
+385 silly gunzTarPerm modified mode [ 'src/bcrypt_node.cc', 420, 438 ]
+386 silly gunzTarPerm extractEntry src/blowfish.cc
+387 silly gunzTarPerm modified mode [ 'src/blowfish.cc', 420, 438 ]
+388 silly gentlyRm G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bindings-e45c3e0d\node_modules is being purged
+389 verbose gentlyRm don't care about contents; nuking G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bindings-e45c3e0d\node_modules
+390 silly gentlyRm G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bindings-53851012\node_modules is being purged
+391 verbose gentlyRm don't care about contents; nuking G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bindings-53851012\node_modules
+392 silly gunzTarPerm extractEntry examples/async_compare.js
+393 silly gunzTarPerm modified mode [ 'examples/async_compare.js', 420, 438 ]
+394 silly gunzTarPerm extractEntry examples/forever_gen_salt.js
+395 silly gunzTarPerm modified mode [ 'examples/forever_gen_salt.js', 420, 438 ]
+396 silly gunzTarPerm extractEntry deps/hiredis/.npmignore
+397 silly gunzTarPerm modified mode [ 'deps/hiredis/.npmignore', 420, 438 ]
+398 silly gunzTarPerm extractEntry deps/hiredis/README.md
+399 silly gunzTarPerm modified mode [ 'deps/hiredis/README.md', 420, 438 ]
+400 silly gunzTarPerm extractEntry doc/buffers.md
+401 silly gunzTarPerm modified mode [ 'doc/buffers.md', 436, 438 ]
+402 silly gunzTarPerm extractEntry doc/node_misc.md
+403 silly gunzTarPerm modified mode [ 'doc/node_misc.md', 436, 438 ]
+404 silly gunzTarPerm extractEntry wscript
+405 silly gunzTarPerm modified mode [ 'wscript', 420, 438 ]
+406 silly gunzTarPerm extractEntry CHANGELOG
+407 silly gunzTarPerm modified mode [ 'CHANGELOG', 420, 438 ]
+408 silly gunzTarPerm extractEntry deps/hiredis/CHANGELOG.md
+409 silly gunzTarPerm modified mode [ 'deps/hiredis/CHANGELOG.md', 420, 438 ]
+410 silly gunzTarPerm extractEntry deps/hiredis/COPYING
+411 silly gunzTarPerm modified mode [ 'deps/hiredis/COPYING', 420, 438 ]
+412 silly gunzTarPerm extractEntry doc/object_wrappers.md
+413 silly gunzTarPerm modified mode [ 'doc/object_wrappers.md', 436, 438 ]
+414 silly gunzTarPerm extractEntry doc/persistent.md
+415 silly gunzTarPerm modified mode [ 'doc/persistent.md', 436, 438 ]
+416 silly gunzTarPerm extractEntry deps/hiredis/Makefile
+417 silly gunzTarPerm modified mode [ 'deps/hiredis/Makefile', 420, 438 ]
+418 silly gunzTarPerm extractEntry deps/hiredis/win32.h
+419 silly gunzTarPerm modified mode [ 'deps/hiredis/win32.h', 420, 438 ]
+420 silly gunzTarPerm extractEntry Makefile
+421 silly gunzTarPerm modified mode [ 'Makefile', 420, 438 ]
+422 silly gunzTarPerm extractEntry binding.gyp
+423 silly gunzTarPerm modified mode [ 'binding.gyp', 420, 438 ]
+424 silly gunzTarPerm extractEntry doc/scopes.md
+425 silly gunzTarPerm modified mode [ 'doc/scopes.md', 436, 438 ]
+426 silly gunzTarPerm extractEntry doc/script.md
+427 silly gunzTarPerm modified mode [ 'doc/script.md', 436, 438 ]
+428 silly gunzTarPerm extractEntry deps/hiredis/adapters/ae.h
+429 silly gunzTarPerm modified mode [ 'deps/hiredis/adapters/ae.h', 420, 438 ]
+430 silly gunzTarPerm extractEntry deps/hiredis/adapters/glib.h
+431 silly gunzTarPerm modified mode [ 'deps/hiredis/adapters/glib.h', 420, 438 ]
+432 silly gunzTarPerm extractEntry doc/string_bytes.md
+433 silly gunzTarPerm modified mode [ 'doc/string_bytes.md', 436, 438 ]
+434 silly gunzTarPerm extractEntry doc/v8_internals.md
+435 silly gunzTarPerm modified mode [ 'doc/v8_internals.md', 436, 438 ]
+436 silly gunzTarPerm extractEntry test/async.js
+437 silly gunzTarPerm modified mode [ 'test/async.js', 420, 438 ]
+438 silly gunzTarPerm extractEntry test/repetitions.js
+439 silly gunzTarPerm modified mode [ 'test/repetitions.js', 420, 438 ]
+440 silly gunzTarPerm extractEntry deps/hiredis/adapters/libev.h
+441 silly gunzTarPerm modified mode [ 'deps/hiredis/adapters/libev.h', 420, 438 ]
+442 silly gunzTarPerm extractEntry deps/hiredis/adapters/libevent.h
+443 silly gunzTarPerm modified mode [ 'deps/hiredis/adapters/libevent.h', 420, 438 ]
+444 silly gunzTarPerm extractEntry deps/hiredis/adapters/libuv.h
+445 silly gunzTarPerm modified mode [ 'deps/hiredis/adapters/libuv.h', 420, 438 ]
+446 silly gunzTarPerm extractEntry deps/hiredis/async.c
+447 silly gunzTarPerm modified mode [ 'deps/hiredis/async.c', 420, 438 ]
+448 silly gunzTarPerm extractEntry doc/v8_misc.md
+449 silly gunzTarPerm modified mode [ 'doc/v8_misc.md', 436, 438 ]
+450 silly gunzTarPerm extractEntry nan.h
+451 silly gunzTarPerm modified mode [ 'nan.h', 436, 438 ]
+452 silly gunzTarPerm extractEntry test/sync.js
+453 silly gunzTarPerm modified mode [ 'test/sync.js', 420, 438 ]
+454 silly gunzTarPerm extractEntry test/deprecated.js
+455 silly gunzTarPerm modified mode [ 'test/deprecated.js', 420, 438 ]
+456 silly gunzTarPerm extractEntry nan_callbacks.h
+457 silly gunzTarPerm modified mode [ 'nan_callbacks.h', 436, 438 ]
+458 silly gunzTarPerm extractEntry deps/hiredis/async.h
+459 silly gunzTarPerm modified mode [ 'deps/hiredis/async.h', 420, 438 ]
+460 silly gunzTarPerm extractEntry deps/hiredis/dict.c
+461 silly gunzTarPerm modified mode [ 'deps/hiredis/dict.c', 420, 438 ]
+462 silly gunzTarPerm extractEntry deps/hiredis/dict.h
+463 silly gunzTarPerm modified mode [ 'deps/hiredis/dict.h', 420, 438 ]
+464 silly gunzTarPerm extractEntry nan_callbacks_12_inl.h
+465 silly gunzTarPerm modified mode [ 'nan_callbacks_12_inl.h', 436, 438 ]
+466 silly gunzTarPerm extractEntry nan_callbacks_pre_12_inl.h
+467 silly gunzTarPerm modified mode [ 'nan_callbacks_pre_12_inl.h', 436, 438 ]
+468 silly gunzTarPerm extractEntry nan_converters.h
+469 silly gunzTarPerm modified mode [ 'nan_converters.h', 436, 438 ]
+470 silly gunzTarPerm extractEntry deps/hiredis/.travis.yml
+471 silly gunzTarPerm modified mode [ 'deps/hiredis/.travis.yml', 420, 438 ]
+472 silly gunzTarPerm extractEntry deps/hiredis/fmacros.h
+473 silly gunzTarPerm modified mode [ 'deps/hiredis/fmacros.h', 420, 438 ]
+474 silly gunzTarPerm extractEntry nan_converters_pre_43_inl.h
+475 silly gunzTarPerm modified mode [ 'nan_converters_pre_43_inl.h', 436, 438 ]
+476 silly gunzTarPerm extractEntry deps/hiredis/hiredis.c
+477 silly gunzTarPerm modified mode [ 'deps/hiredis/hiredis.c', 420, 438 ]
+478 silly gunzTarPerm extractEntry deps/hiredis/hiredis.h
+479 silly gunzTarPerm modified mode [ 'deps/hiredis/hiredis.h', 420, 438 ]
+480 silly gunzTarPerm extractEntry nan_implementation_12_inl.h
+481 silly gunzTarPerm modified mode [ 'nan_implementation_12_inl.h', 436, 438 ]
+482 silly gunzTarPerm extractEntry nan_implementation_pre_12_inl.h
+483 silly gunzTarPerm modified mode [ 'nan_implementation_pre_12_inl.h', 436, 438 ]
+484 silly gunzTarPerm extractEntry nan_json.h
+485 silly gunzTarPerm modified mode [ 'nan_json.h', 436, 438 ]
+486 silly gunzTarPerm extractEntry nan_maybe_43_inl.h
+487 silly gunzTarPerm modified mode [ 'nan_maybe_43_inl.h', 436, 438 ]
+488 silly gunzTarPerm extractEntry deps/hiredis/net.c
+489 silly gunzTarPerm modified mode [ 'deps/hiredis/net.c', 420, 438 ]
+490 silly gunzTarPerm extractEntry deps/hiredis/net.h
+491 silly gunzTarPerm modified mode [ 'deps/hiredis/net.h', 420, 438 ]
+492 silly gunzTarPerm extractEntry nan_maybe_pre_43_inl.h
+493 silly gunzTarPerm modified mode [ 'nan_maybe_pre_43_inl.h', 436, 438 ]
+494 silly gunzTarPerm extractEntry nan_new.h
+495 silly gunzTarPerm modified mode [ 'nan_new.h', 436, 438 ]
+496 silly gunzTarPerm extractEntry deps/hiredis/read.c
+497 silly gunzTarPerm modified mode [ 'deps/hiredis/read.c', 420, 438 ]
+498 silly gunzTarPerm extractEntry deps/hiredis/read.h
+499 silly gunzTarPerm modified mode [ 'deps/hiredis/read.h', 420, 438 ]
+500 silly gunzTarPerm extractEntry deps/hiredis/sds.c
+501 silly gunzTarPerm modified mode [ 'deps/hiredis/sds.c', 420, 438 ]
+502 silly gunzTarPerm extractEntry deps/hiredis/sds.h
+503 silly gunzTarPerm modified mode [ 'deps/hiredis/sds.h', 420, 438 ]
+504 silly gunzTarPerm extractEntry nan_object_wrap.h
+505 silly gunzTarPerm modified mode [ 'nan_object_wrap.h', 436, 438 ]
+506 silly gunzTarPerm extractEntry nan_persistent_12_inl.h
+507 silly gunzTarPerm modified mode [ 'nan_persistent_12_inl.h', 436, 438 ]
+508 silly gunzTarPerm extractEntry nan_persistent_pre_12_inl.h
+509 silly gunzTarPerm modified mode [ 'nan_persistent_pre_12_inl.h', 436, 438 ]
+510 silly gunzTarPerm extractEntry nan_private.h
+511 silly gunzTarPerm modified mode [ 'nan_private.h', 436, 438 ]
+512 silly gunzTarPerm extractEntry deps/hiredis/test.c
+513 silly gunzTarPerm modified mode [ 'deps/hiredis/test.c', 420, 438 ]
+514 silly gunzTarPerm extractEntry deps/hiredis/examples/example-ae.c
+515 silly gunzTarPerm modified mode [ 'deps/hiredis/examples/example-ae.c', 420, 438 ]
+516 silly gunzTarPerm extractEntry nan_string_bytes.h
+517 silly gunzTarPerm modified mode [ 'nan_string_bytes.h', 436, 438 ]
+518 silly gunzTarPerm extractEntry nan_typedarray_contents.h
+519 silly gunzTarPerm modified mode [ 'nan_typedarray_contents.h', 436, 438 ]
+520 silly gunzTarPerm extractEntry deps/hiredis/examples/example-glib.c
+521 silly gunzTarPerm modified mode [ 'deps/hiredis/examples/example-glib.c', 420, 438 ]
+522 silly gunzTarPerm extractEntry deps/hiredis/examples/example-libev.c
+523 silly gunzTarPerm modified mode [ 'deps/hiredis/examples/example-libev.c', 420, 438 ]
+524 silly gunzTarPerm extractEntry deps/hiredis/examples/example-libevent.c
+525 silly gunzTarPerm modified mode [ 'deps/hiredis/examples/example-libevent.c', 420, 438 ]
+526 silly gunzTarPerm extractEntry deps/hiredis/examples/example-libuv.c
+527 silly gunzTarPerm modified mode [ 'deps/hiredis/examples/example-libuv.c', 420, 438 ]
+528 silly gunzTarPerm extractEntry nan_weak.h
+529 silly gunzTarPerm modified mode [ 'nan_weak.h', 436, 438 ]
+530 silly gunzTarPerm extractEntry CHANGELOG.md
+531 silly gunzTarPerm modified mode [ 'CHANGELOG.md', 436, 438 ]
+532 silly gunzTarPerm extractEntry deps/hiredis/examples/example.c
+533 silly gunzTarPerm modified mode [ 'deps/hiredis/examples/example.c', 420, 438 ]
+534 silly gunzTarPerm extractEntry deps/hiredis.gyp
+535 silly gunzTarPerm modified mode [ 'deps/hiredis.gyp', 420, 438 ]
+536 silly gunzTarPerm extractEntry tools/package.json
+537 silly gunzTarPerm modified mode [ 'tools/package.json', 436, 438 ]
+538 silly gunzTarPerm extractEntry tools/README.md
+539 silly gunzTarPerm modified mode [ 'tools/README.md', 436, 438 ]
+540 silly gunzTarPerm extractEntry tools/1to2.js
+541 silly gunzTarPerm modified mode [ 'tools/1to2.js', 509, 511 ]
+542 silly gunzTarPerm extractEntry .travis.yml
+543 silly gunzTarPerm modified mode [ '.travis.yml', 420, 438 ]
+544 silly gunzTarPerm extractEntry src/hiredis.cc
+545 silly gunzTarPerm modified mode [ 'src/hiredis.cc', 420, 438 ]
+546 silly gunzTarPerm extractEntry src/reader.cc
+547 silly gunzTarPerm modified mode [ 'src/reader.cc', 420, 438 ]
+548 silly gunzTarPerm extractEntry src/reader.h
+549 silly gunzTarPerm modified mode [ 'src/reader.h', 420, 438 ]
+550 silly gunzTarPerm extractEntry CHANGELOG.md
+551 silly gunzTarPerm modified mode [ 'CHANGELOG.md', 420, 438 ]
+552 silly gunzTarPerm extractEntry test/reader.js
+553 silly gunzTarPerm modified mode [ 'test/reader.js', 420, 438 ]
+554 silly gentlyRm G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bcrypt-95b334f5\node_modules is being purged
+555 verbose gentlyRm don't care about contents; nuking G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bcrypt-95b334f5\node_modules
+556 silly gunzTarPerm extractEntry test/testlib.js
+557 silly gunzTarPerm modified mode [ 'test/testlib.js', 420, 438 ]
+558 silly gunzTarPerm extractEntry test/writer.js
+559 silly gunzTarPerm modified mode [ 'test/writer.js', 420, 438 ]
+560 silly gentlyRm G:\node\node_practice\develpo\shoutbox\node_modules\.staging\nan-0a7fafc7\node_modules is being purged
+561 verbose gentlyRm don't care about contents; nuking G:\node\node_practice\develpo\shoutbox\node_modules\.staging\nan-0a7fafc7\node_modules
+562 silly gentlyRm G:\node\node_practice\develpo\shoutbox\node_modules\.staging\hiredis-7257ea18\node_modules is being purged
+563 verbose gentlyRm don't care about contents; nuking G:\node\node_practice\develpo\shoutbox\node_modules\.staging\hiredis-7257ea18\node_modules
+564 silly doParallel preinstall 5
+565 silly preinstall bindings@1.2.1 G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bindings-53851012
+566 info lifecycle bindings@1.2.1~preinstall: bindings@1.2.1
+567 silly preinstall nan@2.6.2 G:\node\node_practice\develpo\shoutbox\node_modules\.staging\nan-0a7fafc7
+568 info lifecycle nan@2.6.2~preinstall: nan@2.6.2
+569 silly preinstall hiredis@0.5.0 G:\node\node_practice\develpo\shoutbox\node_modules\.staging\hiredis-7257ea18
+570 info lifecycle hiredis@0.5.0~preinstall: hiredis@0.5.0
+571 silly preinstall bindings@1.0.0 G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bindings-e45c3e0d
+572 info lifecycle bindings@1.0.0~preinstall: bindings@1.0.0
+573 silly preinstall bcrypt@0.7.3 G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bcrypt-95b334f5
+574 info lifecycle bcrypt@0.7.3~preinstall: bcrypt@0.7.3
+575 silly lifecycle bindings@1.2.1~preinstall: no script for preinstall, continuing
+576 silly lifecycle bindings@1.0.0~preinstall: no script for preinstall, continuing
+577 silly lifecycle nan@2.6.2~preinstall: no script for preinstall, continuing
+578 silly lifecycle hiredis@0.5.0~preinstall: no script for preinstall, continuing
+579 silly lifecycle bcrypt@0.7.3~preinstall: no script for preinstall, continuing
+580 silly doReverseSerial remove 0
+581 silly doSerial move 0
+582 silly doSerial finalize 5
+583 silly finalize G:\node\node_practice\develpo\shoutbox\node_modules\hiredis\node_modules\bindings
+584 silly finalize G:\node\node_practice\develpo\shoutbox\node_modules\nan
+585 silly finalize G:\node\node_practice\develpo\shoutbox\node_modules\hiredis
+586 silly finalize G:\node\node_practice\develpo\shoutbox\node_modules\bindings
+587 silly finalize G:\node\node_practice\develpo\shoutbox\node_modules\bcrypt
+588 silly doSerial build 5
+589 silly build bindings@1.2.1
+590 info linkStuff bindings@1.2.1
+591 silly linkStuff bindings@1.2.1 has G:\node\node_practice\develpo\shoutbox\node_modules\hiredis\node_modules as its parent node_modules
+592 verbose linkBins bindings@1.2.1
+593 verbose linkMans bindings@1.2.1
+594 silly build nan@2.6.2
+595 info linkStuff nan@2.6.2
+596 silly linkStuff nan@2.6.2 has G:\node\node_practice\develpo\shoutbox\node_modules as its parent node_modules
+597 verbose linkBins nan@2.6.2
+598 verbose linkMans nan@2.6.2
+599 silly build hiredis@0.5.0
+600 info linkStuff hiredis@0.5.0
+601 silly linkStuff hiredis@0.5.0 has G:\node\node_practice\develpo\shoutbox\node_modules as its parent node_modules
+602 verbose linkBins hiredis@0.5.0
+603 verbose linkMans hiredis@0.5.0
+604 silly build bindings@1.0.0
+605 info linkStuff bindings@1.0.0
+606 silly linkStuff bindings@1.0.0 has G:\node\node_practice\develpo\shoutbox\node_modules as its parent node_modules
+607 verbose linkBins bindings@1.0.0
+608 verbose linkMans bindings@1.0.0
+609 silly build bcrypt@0.7.3
+610 info linkStuff bcrypt@0.7.3
+611 silly linkStuff bcrypt@0.7.3 has G:\node\node_practice\develpo\shoutbox\node_modules as its parent node_modules
+612 verbose linkBins bcrypt@0.7.3
+613 verbose linkMans bcrypt@0.7.3
+614 silly doSerial global-link 0
+615 silly doParallel update-linked 0
+616 silly doSerial install 5
+617 silly install bindings@1.2.1 G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bindings-53851012
+618 info lifecycle bindings@1.2.1~install: bindings@1.2.1
+619 silly lifecycle bindings@1.2.1~install: no script for install, continuing
+620 silly install nan@2.6.2 G:\node\node_practice\develpo\shoutbox\node_modules\.staging\nan-0a7fafc7
+621 info lifecycle nan@2.6.2~install: nan@2.6.2
+622 silly lifecycle nan@2.6.2~install: no script for install, continuing
+623 silly install hiredis@0.5.0 G:\node\node_practice\develpo\shoutbox\node_modules\.staging\hiredis-7257ea18
+624 info lifecycle hiredis@0.5.0~install: hiredis@0.5.0
+625 verbose lifecycle hiredis@0.5.0~install: unsafe-perm in lifecycle true
+626 verbose lifecycle hiredis@0.5.0~install: PATH: G:\node\node_modules\npm\bin\node-gyp-bin;G:\node\node_practice\develpo\shoutbox\node_modules\hiredis\node_modules\.bin;G:\node\node_practice\develpo\shoutbox\node_modules\.bin;E:\Program Files\Java\jdk1.8.0_73\bin;E:\Oracle\DISK1\oracle\app\oracle\product\11.2.0\server\bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;F:\Program Files\110\DTS\Binn\;F:\Program Files (x86)\110\Tools\Binn\;F:\Program Files\110\Tools\Binn\;F:\Program Files (x86)\110\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\PrivateAssemblies\;F:\Program Files (x86)\110\DTS\Binn\;E;\Program Files (x86)\ATI.ACE\Core-Static;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;F:\Program Files\130\Tools\Binn\;F:\study\svn\bin;F:\command;G:\node\;C:\Users\闫江南\AppData\Local\Microsoft\WindowsApps;C:\Users\闫江南\AppData\Roaming\npm
+627 verbose lifecycle hiredis@0.5.0~install: CWD: G:\node\node_practice\develpo\shoutbox\node_modules\hiredis
+628 silly lifecycle hiredis@0.5.0~install: Args: [ '/d /s /c', 'node-gyp rebuild' ]
+629 silly lifecycle hiredis@0.5.0~install: Returned: code: 1  signal: null
+630 info lifecycle hiredis@0.5.0~install: Failed to exec install script
+631 silly install bindings@1.0.0 G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bindings-e45c3e0d
+632 info lifecycle bindings@1.0.0~install: bindings@1.0.0
+633 silly lifecycle bindings@1.0.0~install: no script for install, continuing
+634 silly install bcrypt@0.7.3 G:\node\node_practice\develpo\shoutbox\node_modules\.staging\bcrypt-95b334f5
+635 info lifecycle bcrypt@0.7.3~install: bcrypt@0.7.3
+636 verbose lifecycle bcrypt@0.7.3~install: unsafe-perm in lifecycle true
+637 verbose lifecycle bcrypt@0.7.3~install: PATH: G:\node\node_modules\npm\bin\node-gyp-bin;G:\node\node_practice\develpo\shoutbox\node_modules\bcrypt\node_modules\.bin;G:\node\node_practice\develpo\shoutbox\node_modules\.bin;E:\Program Files\Java\jdk1.8.0_73\bin;E:\Oracle\DISK1\oracle\app\oracle\product\11.2.0\server\bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;F:\Program Files\110\DTS\Binn\;F:\Program Files (x86)\110\Tools\Binn\;F:\Program Files\110\Tools\Binn\;F:\Program Files (x86)\110\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\PrivateAssemblies\;F:\Program Files (x86)\110\DTS\Binn\;E;\Program Files (x86)\ATI.ACE\Core-Static;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;F:\Program Files\130\Tools\Binn\;F:\study\svn\bin;F:\command;G:\node\;C:\Users\闫江南\AppData\Local\Microsoft\WindowsApps;C:\Users\闫江南\AppData\Roaming\npm
+638 verbose lifecycle bcrypt@0.7.3~install: CWD: G:\node\node_practice\develpo\shoutbox\node_modules\bcrypt
+639 silly lifecycle bcrypt@0.7.3~install: Args: [ '/d /s /c', 'node-gyp rebuild' ]
+640 silly lifecycle bcrypt@0.7.3~install: Returned: code: 1  signal: null
+641 info lifecycle bcrypt@0.7.3~install: Failed to exec install script
+642 verbose unlock done using C:\Users\闫江南\AppData\Roaming\npm-cache\_locks\staging-6cbd533b1c352e7e.lock for G:\node\node_practice\develpo\shoutbox\node_modules\.staging
+643 silly rollbackFailedOptional Starting
+644 silly rollbackFailedOptional Finishing
+645 silly runTopLevelLifecycles Finishing
+646 silly install printInstalled
+647 warn optional SKIPPING OPTIONAL DEPENDENCY: hiredis@0.5.0 (node_modules\hiredis):
+648 warn optional SKIPPING OPTIONAL DEPENDENCY: hiredis@0.5.0 install: `node-gyp rebuild`
+648 warn optional SKIPPING OPTIONAL DEPENDENCY: Exit status 1
+649 verbose optional SKIPPING OPTIONAL DEPENDENCY:
+649 verbose optional Failed at the hiredis@0.5.0 install script 'node-gyp rebuild'.
+649 verbose optional SKIPPING OPTIONAL DEPENDENCY: Make sure you have the latest version of node.js and npm installed.
+649 verbose optional SKIPPING OPTIONAL DEPENDENCY: If you do, this is most likely a problem with the hiredis package,
+649 verbose optional SKIPPING OPTIONAL DEPENDENCY: not with npm itself.
+649 verbose optional SKIPPING OPTIONAL DEPENDENCY: Tell the author that this fails on your system:
+649 verbose optional SKIPPING OPTIONAL DEPENDENCY:     node-gyp rebuild
+649 verbose optional SKIPPING OPTIONAL DEPENDENCY: You can get information on how to open an issue for this project with:
+649 verbose optional SKIPPING OPTIONAL DEPENDENCY:     npm bugs hiredis
+649 verbose optional SKIPPING OPTIONAL DEPENDENCY: Or if that isn't available, you can get their info via:
+649 verbose optional SKIPPING OPTIONAL DEPENDENCY:     npm owner ls hiredis
+649 verbose optional SKIPPING OPTIONAL DEPENDENCY: There is likely additional logging output above.
+650 verbose stack Error: bcrypt@0.7.3 install: `node-gyp rebuild`
+650 verbose stack Exit status 1
+650 verbose stack     at EventEmitter.<anonymous> (G:\node\node_modules\npm\lib\utils\lifecycle.js:255:16)
+650 verbose stack     at emitTwo (events.js:106:13)
+650 verbose stack     at EventEmitter.emit (events.js:191:7)
+650 verbose stack     at ChildProcess.<anonymous> (G:\node\node_modules\npm\lib\utils\spawn.js:40:14)
+650 verbose stack     at emitTwo (events.js:106:13)
+650 verbose stack     at ChildProcess.emit (events.js:191:7)
+650 verbose stack     at maybeClose (internal/child_process.js:886:16)
+650 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
+651 verbose pkgid bcrypt@0.7.3
+652 verbose cwd G:\node\node_practice\develpo\shoutbox
+653 error Windows_NT 10.0.14393
+654 error argv "G:\\node\\node.exe" "G:\\node\\node_modules\\npm\\bin\\npm-cli.js" "install" "bcrypt"
+655 error node v6.10.3
+656 error npm  v3.10.10
+657 error code ELIFECYCLE
+658 error bcrypt@0.7.3 install: `node-gyp rebuild`
+658 error Exit status 1
+659 error Failed at the bcrypt@0.7.3 install script 'node-gyp rebuild'.
+659 error Make sure you have the latest version of node.js and npm installed.
+659 error If you do, this is most likely a problem with the bcrypt package,
+659 error not with npm itself.
+659 error Tell the author that this fails on your system:
+659 error     node-gyp rebuild
+659 error You can get information on how to open an issue for this project with:
+659 error     npm bugs bcrypt
+659 error Or if that isn't available, you can get their info via:
+659 error     npm owner ls bcrypt
+659 error There is likely additional logging output above.
+660 verbose exit [ 1, true ]

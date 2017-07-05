@@ -1,0 +1,129 @@
+### webpack之代码拆分
+
+#### 代码拆分-CSS
+
+要通过webpack打包CSS，像任何其他模块一样将CSS导入JavaScript代码，并使用css-loader（它输出CSS作为JS模块），并可选地应用ExtractTextWebpackPlugin（它提取打包的CSS并输出CSS文件）。
+
+##### 导入CSS
+比如在一个js文件中导入css
+```
+import 'bootstrap/dist/css/bootstrap.css';
+```
+
+#####  使用css-loader
+在webpack.config.js中配置css-loader
+```
+module.exports = {
+    module: {
+        rules: [{
+            test: /\.css$/,
+            use: 'css-loader'
+        }]
+    }
+}
+```
+这样就实现了js和css的打包<br>
+不过这也是有缺点的，你必须等待整个js包下载完毕，才能去重绘网页，而ExtractTextWebpackPlugin插件可以分别打包CSS以解决这个问题
+
+安装ExtractTextWebpackPlugin插件
+>npm i --save-dev extract-text-webpack-plugin@beta
+
+另外需要在config.js里配置
+>rules结构体里加入  use: ExtractTextPlugin.extract({
+                use: 'css-loader'
+            })
+
+>最外层与module平级加入   plugins: [
+        new ExtractTextPlugin('styles.css'),
+    ]
+
+于此你便可以为css模块生成新的bundle，并随意添加了
+
+<hr>
+
+#### 代码拆分-库
+
+把第三方代码和应用本身的代码一起打包是非常低效的。因为浏览器会根据缓存头来缓存资源文件，如果文件没有被改变，文件将会被缓存从而不用去再次请求 cdn。为了利用这一特性，我们希望不管应用本身的代码如何改变，vendor 文件的 hash 始终恒定不变。
+
+只有当我们把 vendor 和应用代码的 bundle 分离时，才能实现这一点。
+
+官网blah了一堆，我不是很懂啦，这里的拆分我暂且将它理解为对浏览器缓存机制的一次利用，其他的请各位路人绕道官网或者someelse pages，我就不管了╮(╯▽╰)╭
+
+<hr>
+
+#### 代码拆分-require.ensure
+
+重点来了朋友们，这个就有点意思了
+
+webpack 在编译时，会静态地解析代码中的 require.ensure()，同时将模块添加到一个分开的 chunk 当中。这个新的 chunk 会被 webpack 通过 jsonp 来按需加载。
+
+语法如下：
+```
+require.ensure(dependencies: String[], callback: function(require), chunkName: String)
+```
+##### 依赖 dependencies
+
+这是一个字符串数组，通过这个参数，在所有的回调函数的代码被执行前，我们可以将所有需要用到的模块进行声明。
+
+##### 回调 callback
+
+当所有的依赖都加载完成后，webpack会执行这个回调函数。require 对象的一个实现会作为一个参数传递给这个回调函数。因此，我们可以进一步 require() 依赖和其它模块提供下一步的执行。
+
+##### chunk名称 chunkName
+
+chunkName 是提供给这个特定的 require.ensure() 的 chunk 的名称。通过提供 require.ensure() 不同执行点相同的名称，我们可以保证所有的依赖都会一起放进相同的 文件束(bundle)。
+
+下面做一个示例
+
+```
+\\ file structure
+    |
+    js --|
+    |    |-- entry.js
+    |    |-- a.js
+    |    |-- b.js
+    webpack.config.js
+    |
+    dist
+```
+
+```
+\\ entry.js
+
+require('a');
+require.ensure([], function(require){
+    require('b');
+});
+
+\\ a.js
+console.log('***** I AM a *****');
+
+\\ b.js
+console.log('***** I AM b *****');
+```
+
+```
+\\ webpack.config.js
+var path = require('path');
+
+module.exports = function(env) {
+    return {
+        entry: './js/entry.js',
+        output: {
+            filename: 'bundle.js',
+            path: path.resolve(__dirname, 'dist')
+        }
+    }
+}
+```
+
+通过执行这个项目的 webpack 构建，我们发现 webpack 创建了2个新的文件束， bundle.js 和 0.bundle.js。
+
+entry.js 和 a.js 被打包进 bundle.js.
+
+b.js 被打包进 0.bundle.js.
+
+require.ensure 内部依赖于 Promises。 如果你在旧的浏览器中使用 require.ensure 请记得 去 shim Promise.
+
+End.<br>
+import by [webpack中文网]

@@ -1,0 +1,24 @@
+@color: $4d926f;
+
+#header {
+    color: @color
+}
+
+h2 {
+    color: @color
+}
+
+
+//使用mixin
+.roundedCorner(@radius: 5px) {
+    -moz-border-radius: @radius;
+    -webkit-border-radius: @radius;
+    border-radius: @radius
+}
+
+#header{
+    .roundedCorners
+}
+#footer{
+    .roundedCorners(10px);
+}

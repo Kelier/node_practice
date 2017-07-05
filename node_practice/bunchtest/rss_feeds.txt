@@ -1,0 +1,2 @@
+http://news.baidu.com/n?cmd=1&class=internet&tn=rss
+http://news.baidu.com/n?cmd=1&class=internews&tn=rss

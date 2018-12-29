@@ -1,0 +1,15 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "node_practice/Express/photo/package.json",
+        "node_practice/develpo/shoutbox/package.json",
+        "node_practice/grunt/package.json",
+        "node_practice/koa/package.json",
+        "node_practice/vue/webpackViaVue/package.json",
+        "node_practice/webpack-demo/package.json",
+        "node_practice/winApp/package.json"
+      ]
+    }
+  }
+}

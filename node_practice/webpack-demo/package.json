@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "webpack": "^2.6.1"
+    "webpack": "^4.28.2"
   },
   "dependencies": {
     "lodash": "^4.17.4"

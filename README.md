@@ -1,4 +1,7 @@
 # node_practice
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Kelier/node_practice.svg)](https://greenkeeper.io/)
+
 基本上是自己照着node.js那本厚书lu了遍，一些入门的例子
 
 里面没什么重要的东西，但是都是每个插件或者工具类的入门例子
